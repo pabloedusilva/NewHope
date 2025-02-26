@@ -1,4 +1,4 @@
-// Função para atualizar o contador do carrinho nos ícones
+// Função para atualizar o contador do carrinho
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const navCartCountElement = document.getElementById('nav-cart-count');
@@ -166,6 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCart(); // Carrega o carrinho
 });
 
+// CARRINHO FIXADO
+function goToCart() {
+    window.location.href = 'carrinho.html'; // Redireciona para a página do carrinho
+}
+
 // CARROSEL
 let currentSlide = 0;
 let slideInterval;
@@ -236,7 +241,17 @@ function checkout() {
         'produto17': { ref: 'REF: #017', size: 'Tamanho: GG' },
         'produto18': { ref: 'REF: #018', size: 'Tamanho: P' },
         'produto19': { ref: 'REF: #019', size: 'Tamanho: G' },
-        'produto20': { ref: 'REF: #020', size: 'Tamanho: GG' }
+        'produto20': { ref: 'REF: #020', size: 'Tamanho: GG' },
+        'produto21': { ref: 'REF: #021', size: 'Tamanho: M' },
+        'produto22': { ref: 'REF: #022', size: 'Tamanho: G' },
+        'produto23': { ref: 'REF: #023', size: 'Tamanho: P' },
+        'produto24': { ref: 'REF: #024', size: 'Tamanho: GG' },
+        'produto25': { ref: 'REF: #025', size: 'Tamanho: M' },
+        'produto26': { ref: 'REF: #026', size: 'Tamanho: GG' },
+        'produto27': { ref: 'REF: #027', size: 'Tamanho: P' },
+        'produto28': { ref: 'REF: #028', size: 'Tamanho: M' },
+        'produto29': { ref: 'REF: #029', size: 'Tamanho: GG' },
+        'produto30': { ref: 'REF: #030', size: 'Tamanho: P' }
     };
 
     let message = 'Olá, gostaria de comprar os seguintes itens:\n';
@@ -250,7 +265,7 @@ function checkout() {
 }
 
 // FILTROS DE MARCAS
-function scrollToSection(id) { 
+function scrollToSection(id) {
     // Rola até a seção da marca
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 
