@@ -300,7 +300,7 @@ function toggleBrandSelector() {
 }
 
 // Exibir a barra automaticamente após o carregamento inicial
-window.onload = function() {
+window.onload = function () {
     const brandSelector = document.querySelector('.brand-selector');
     const toggleBtn = document.querySelector('.toggle-btn');
 
@@ -308,4 +308,38 @@ window.onload = function() {
     const toggleIcon = document.querySelector('#toggle-icon');
     toggleIcon.setAttribute('d', 'M9 18l6-6-6-6'); // Seta para a direita
     toggleBtn.style.left = '0'; // Ajusta a posição da seta para fora da gaveta
+}
+
+
+function openImageModal(imageSrc) {
+    document.getElementById('modalImage').src = imageSrc;
+    var imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+    imageModal.show();
+}
+
+// MODAL PARA VER IMAGEM AMPLIADA
+
+// Função para abrir modal de imagem com múltiplas imagens
+function openImageModal(images) {
+    const modalImage = document.getElementById('modalImage');
+    const zoomButton = document.querySelector('.zoom-button');
+
+    // Define a primeira imagem no modal
+    modalImage.src = images[0];
+
+
+    modalImage.addEventListener('mouseout', function () {
+    });
+
+    // Exibe o modal
+    const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+    imageModal.show();
+
+    // Lógica para alternar entre as imagens (apenas a primeira por enquanto)
+    let currentImageIndex = 0;
+
+    zoomButton.onclick = function () {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        modalImage.src = images[currentImageIndex];
+    };
 }
