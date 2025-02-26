@@ -260,10 +260,21 @@ document.addEventListener('DOMContentLoaded', () => {
 // FILTROS DE MARCAS
 
 function scrollToSection(id) {
+    // Rola até a seção da marca
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-  }
 
-  function toggleBrandSelector() {
+    // Fecha a barra de marcas automaticamente
+    const brandSelector = document.querySelector('.brand-selector');
+    const toggleIcon = document.querySelector('#toggle-icon');
+    const toggleBtn = document.querySelector('.toggle-btn');
+
+    // Fecha a barra de marcas
+    brandSelector.style.left = '-200px';
+    toggleIcon.setAttribute('d', 'M9 18l6-6-6-6'); // Seta para a direita
+    toggleBtn.style.left = '0'; // Ajusta a posição da seta para fora da gaveta
+}
+
+function toggleBrandSelector() {
     const brandSelector = document.querySelector('.brand-selector');
     const toggleIcon = document.querySelector('#toggle-icon');
     const toggleBtn = document.querySelector('.toggle-btn');
@@ -272,22 +283,24 @@ function scrollToSection(id) {
     if (brandSelector.style.left === '-200px') {
       // Barra abre
       brandSelector.style.left = '0';
-      toggleIcon.src = 'icons/seta-esquerda.png'; // Seta para fechar
+      toggleIcon.setAttribute('d', 'M15 19l-7-7 7-7'); // Seta para a esquerda
       toggleBtn.style.left = '200px'; // Ajusta a posição da seta para dentro da gaveta
     } else {
       // Barra fecha
       brandSelector.style.left = '-200px';
-      toggleIcon.src = 'icons/seta-direita.png'; // Seta para abrir
+      toggleIcon.setAttribute('d', 'M9 18l6-6-6-6'); // Seta para a direita
       toggleBtn.style.left = '0'; // Ajusta a posição da seta para fora da gaveta
     }
-  }
+}
 
-  // Exibir a barra automaticamente após o carregamento inicial
-  window.onload = function() {
-    const brandSelector = document.querySelector('.brand-selector');
-    const toggleBtn = document.querySelector('.toggle-btn');
-    
-    brandSelector.style.left = '0'; // Exibe a barra assim que a página carrega
-    document.querySelector('#toggle-icon').src = 'icons/seta'; // Ajusta a seta para o estado de fechamento
-    toggleBtn.style.left = '200px'; // Posiciona a seta para dentro da gaveta
-  }
+// Exibir a barra automaticamente após o carregamento inicial
+window.onload = function() {
+  const brandSelector = document.querySelector('.brand-selector');
+  const toggleBtn = document.querySelector('.toggle-btn');
+  
+  brandSelector.style.left = '-200px'; // Barra começa fechada
+  const toggleIcon = document.querySelector('#toggle-icon');
+  toggleIcon.setAttribute('d', 'M9 18l6-6-6-6'); // Seta para a direita
+  toggleBtn.style.left = '0'; // Ajusta a posição da seta para fora da gaveta
+}
+

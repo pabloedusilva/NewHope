@@ -60,7 +60,7 @@
       </ul>
     </nav>
     <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-<!-- Barra de seleção de marcas -->
+<!-- Barra de seleção das marcas -->
 <div class="brand-selector">
   <button onclick="scrollToSection('marca1')">
     <img src="imagens/Chronic.png" alt="Marca 1">
@@ -73,16 +73,18 @@
   </button>
 </div>
 
-<!-- Botão da seta (fora da área da gaveta) -->
+<!-- Botão da seta -->
 <div class="toggle-btn" onclick="toggleBrandSelector()">
-  <!-- Seta SVG para direita (abrir) -->
   <svg id="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M9 18l6-6-6-6"></path>
   </svg>
 </div>
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 
 <!-- CHRONIC -->
       <!-- Produto 1 -->
+      <section id="marca1" class="brand-section">
+        <h2>Chronic</h2>
       <div class="col-md-4 mb-3" data-product-id="produto1">
         <div class="card">
           <div
@@ -699,14 +701,15 @@
           </div>
         </div>
       </div>
+    </section>
 
       <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
       <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
       <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 
       <!-- BLESSED -->
-      <h2 id="blessed" class="mt-5">Blessed</h2>
-      <div class="row">
+      <section id="marca2" class="brand-section">
+        <h2>Blessed Choice</h2>
         <!-- Produto 11 -->
         <div class="col-md-4 mb-3" data-product-id="produto11">
           <div class="card">
@@ -1326,7 +1329,7 @@
         </div>
       </div>
     </div>
-
+  </section>
     <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 
     <!-- CARRINHO FIXADO -->

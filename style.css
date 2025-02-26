@@ -250,35 +250,26 @@ footer .socials a {
     }
 }
 
-/* BOTÕES DE FILTRO DE MARCAS (CHRONIC E BLESSED) */
-.btn-circle {
-    display: inline-block;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: #007bff; /* Cor de fundo */
-    margin: 0 15px; /* Margem entre os botões */
-    overflow: hidden;
-    transition: background-color 0.3s;
-}
-
-.btn-circle:hover {
-    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
-}
-
-.btn-icon {
-    width: 100%; /* Faz a imagem ocupar toda a largura do botão */
-    height: 100%; /* Faz a imagem ocupar toda a altura do botão */
-    object-fit: cover; /* Garante que a imagem ocupe toda a área sem distorcer */
-    display: block; /* Remove o espaçamento abaixo da imagem */
-}
-
-/* ÍCONE DE ®️ "R" */
-.supersmall {
-    font-size: 0.6em;
-    vertical-align: super;
-}
-
+/* BOTÕES DE FILTRO DE MARCAS */
+.brand-section h2 {
+    font-size: 2rem; /* Tamanho do texto */
+    font-weight: bold; /* Deixa o título em negrito */
+    text-transform: uppercase; /* Transforma o texto em maiúsculas */
+    letter-spacing: 2px; /* Espaçamento entre as letras */
+    color: #333; /* Cor do texto */
+    text-align: center; /* Alinha o texto ao centro */
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+    position: relative; /* Necessário para o efeito da linha abaixo */
+  }
+  
+  .brand-section h2::after {
+    content: ''; /* Cria um pseudo-elemento */
+    display: block; /* Faz com que o pseudo-elemento seja exibido como bloco */
+    width: 50%; /* Define o tamanho da linha */
+    height: 4px; /* Tamanho da linha */
+    margin: 10px auto 0; /* Alinha a linha ao centro com um espaçamento superior */
+  }
+  
 /* CARDS DAS IMAGENS */
 .card {
     width: 300px; /* Largura ajustada para menor */
@@ -319,32 +310,6 @@ footer .socials a {
         transform: translateY(0); /* Termina no seu lugar original */
     }
 }
-
-/* Estilo do botão "Ir ao topo" */
-.scroll-to-top {
-    position: fixed; /* Fixa o botão na tela */
-    bottom: 20px; /* Distância da parte inferior */
-    left: 20px; /* Distância da parte esquerda */
-    background-color: #ffffff; /* Cor de fundo do botão */
-    color: rgb(0, 0, 0); /* Cor do texto */
-    border: none; /* Sem borda */
-    border-radius: 50%; /* Botão redondo */
-    width: 40px; /* Largura do botão */
-    height: 40px; /* Altura do botão */
-    display: flex; /* Usando flexbox para centralizar o ícone */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    cursor: pointer; /* Mostra o cursor de pointer quando passa sobre o botão */
-    font-size: 24px; /* Tamanho do ícone */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombras para destacar o botão */
-    transition: background-color 0.3s, transform 0.2s; /* Transição suave */
-}
-
-/* Ícone dentro do botão (pode usar o ícone de setinha para cima ou qualquer outro) */
-.scroll-to-top i {
-    font-size: 24px; /* Ajuste o tamanho do ícone */
-}
-
 /* MEDIA QUERIES PARA RESPONDER A TAMAÑOS DE TELA MENOR */
 @media (max-width: 1024px) {
     .category-item {
@@ -400,11 +365,6 @@ footer .socials a {
         height: 30px;
     }
 }
-
-
-
-
-
 
 
 /* Barra de seleção fixa na lateral esquerda */
