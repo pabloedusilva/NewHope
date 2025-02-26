@@ -74,16 +74,26 @@ function createProductCard(productId) {
         'produto8': { img: 'imagens/frente.webp', ref: 'REF: 008', size: 'Tamanho: GG' },
         'produto9': { img: 'imagens/frente.webp', ref: 'REF: 009', size: 'Tamanho: P' },
         'produto10': { img: 'imagens/frente.webp', ref: 'REF: 010', size: 'Tamanho: G' },
-        'produto11': { img: 'imagens/frente11.webp', ref: 'REF: 011', size: 'Tamanho: P' },
-        'produto12': { img: 'imagens/frente12.webp', ref: 'REF: 012', size: 'Tamanho: G' },
-        'produto13': { img: 'imagens/frente13.webp', ref: 'REF: 013', size: 'Tamanho: M' },
-        'produto14': { img: 'imagens/frente14.webp', ref: 'REF: 014', size: 'Tamanho: GG' },
-        'produto15': { img: 'imagens/frente15.webp', ref: 'REF: 015', size: 'Tamanho: P' },
-        'produto16': { img: 'imagens/frente16.webp', ref: 'REF: 016', size: 'Tamanho: G' },
-        'produto17': { img: 'imagens/frente17.webp', ref: 'REF: 017', size: 'Tamanho: GG' },
-        'produto18': { img: 'imagens/frente18.webp', ref: 'REF: 018', size: 'Tamanho: P' },
-        'produto19': { img: 'imagens/frente19.webp', ref: 'REF: 019', size: 'Tamanho: G' },
-        'produto20': { img: 'imagens/frente20.webp', ref: 'REF: 020', size: 'Tamanho: GG' }
+        'produto11': { img: 'imagens/frente_blessed.webp', ref: 'REF: 011', size: 'Tamanho: M' },
+        'produto12': { img: 'imagens/frente_blessed.webp', ref: 'REF: 012', size: 'Tamanho: G' },
+        'produto13': { img: 'imagens/frente_blessed.webp', ref: 'REF: 013', size: 'Tamanho: M' },
+        'produto14': { img: 'imagens/frente_blessed.webp', ref: 'REF: 014', size: 'Tamanho: GG' },
+        'produto15': { img: 'imagens/frente_blessed.webp', ref: 'REF: 015', size: 'Tamanho: P' },
+        'produto16': { img: 'imagens/frente_blessed.webp', ref: 'REF: 016', size: 'Tamanho: G' },
+        'produto17': { img: 'imagens/frente_blessed.webp', ref: 'REF: 017', size: 'Tamanho: GG' },
+        'produto18': { img: 'imagens/frente_blessed.webp', ref: 'REF: 018', size: 'Tamanho: P' },
+        'produto19': { img: 'imagens/frente_blessed.webp', ref: 'REF: 019', size: 'Tamanho: G' },
+        'produto20': { img: 'imagens/frente_blessed.webp', ref: 'REF: 020', size: 'Tamanho: GG' },
+        'produto21': { img: 'imagens/frente_time_1.webp', ref: 'REF: 021', size: 'Tamanho: M' },
+        'produto22': { img: 'imagens/frente_time_2.webp', ref: 'REF: 022', size: 'Tamanho: G' },
+        'produto23': { img: 'imagens/frente_time_3.webp', ref: 'REF: 023', size: 'Tamanho: P' },
+        'produto24': { img: 'imagens/frente_time_4.webp', ref: 'REF: 024', size: 'Tamanho: GG' },
+        'produto25': { img: 'imagens/frente_time_5.webp', ref: 'REF: 025', size: 'Tamanho: M' },
+        'produto26': { img: 'imagens/frente_time_6.webp', ref: 'REF: 026', size: 'Tamanho: GG' },
+        'produto27': { img: 'imagens/frente_time_7.webp', ref: 'REF: 027', size: 'Tamanho: P' },
+        'produto28': { img: 'imagens/frente_time_8.webp', ref: 'REF: 028', size: 'Tamanho: M' },
+        'produto29': { img: 'imagens/frente_time_9.webp', ref: 'REF: 029', size: 'Tamanho: GG' },
+        'produto30': { img: 'imagens/frente_time_10.webp', ref: 'REF: 030', size: 'Tamanho: P' }
     };
 
     const card = document.createElement('div');
@@ -102,23 +112,12 @@ function createProductCard(productId) {
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCount(); // Atualiza o contador ao carregar a página
     loadCart(); // Carrega o carrinho
-    
-    // Se necessário, pode ser adicionado um evento de clique para ir diretamente para o carrinho
-    document.getElementById('cart-icon').addEventListener('click', () => {
-        window.location.href = 'carrinho.html'; // Redireciona para a página do carrinho
-    });
 
     // Inicializa o carrossel
     startCarousel();
 });
 
-// Função para ir para a página do carrinho
-function goToCart() {
-    window.location.href = 'carrinho.html'; // Redireciona para a página do carrinho
-}
-
 // ALERTA DE ADICIONADO AO CARRINHO
-// Exibir o alerta
 function showCustomAlert() {
     const alertBox = document.getElementById('custom-alert');
     const overlay = document.getElementById('dark-overlay');
@@ -149,10 +148,23 @@ function continueShopping() {
     hideCustomAlert();
 }
 
-// Ir para o carrinho
-function goToCart() {
-    window.location.href = 'carrinho.html';
+// Função para verificar a página atual e mostrar/ocultar o ícone do carrinho
+function checkCartIconVisibility() {
+    const cartIcon = document.getElementById('cart-icon');
+    const currentPage = window.location.pathname.split('/').pop(); // Pega o nome do arquivo atual
+    if (currentPage === 'index.html' || currentPage === 'catalogo.html') {
+        cartIcon.style.display = 'block'; // Mostra o ícone
+    } else {
+        cartIcon.style.display = 'none'; // Esconde o ícone
+    }
 }
+
+// Chama a função ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    checkCartIconVisibility(); // Verifica a visibilidade do ícone do carrinho
+    updateCartCount(); // Atualiza o contador ao carregar a página
+    loadCart(); // Carrega o carrinho
+});
 
 // CARROSEL
 let currentSlide = 0;
@@ -201,7 +213,6 @@ function startCarousel() {
     }
 }
 
-
 // FUNÇÃO PARA CRIAR MENSAGEM E ABRIR WHATSAPP
 function checkout() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -238,28 +249,8 @@ function checkout() {
     window.open(whatsappLink, '_blank');
 }
 
-// Função para verificar a página atual e mostrar/ocultar o ícone do carrinho
-function checkCartIconVisibility() {
-    const cartIcon = document.getElementById('cart-icon');
-    const currentPage = window.location.pathname.split('/').pop(); // Pega o nome do arquivo atual
-    if (currentPage === 'index.html' || currentPage === 'catalogo.html') {
-        cartIcon.style.display = 'block'; // Mostra o ícone
-    } else {
-        cartIcon.style.display = 'none'; // Esconde o ícone
-    }
-}
-
-// Chama a função ao carregar a página
-document.addEventListener('DOMContentLoaded', () => {
-    checkCartIconVisibility(); // Verifica a visibilidade do ícone do carrinho
-    updateCartCount(); // Atualiza o contador ao carregar a página
-    loadCart(); // Carrega o carrinho
-});
-
-
 // FILTROS DE MARCAS
-
-function scrollToSection(id) {
+function scrollToSection(id) { 
     // Rola até a seção da marca
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 
@@ -281,26 +272,25 @@ function toggleBrandSelector() {
 
     // Alterna entre abrir e fechar a barra com um único clique
     if (brandSelector.style.left === '-200px') {
-      // Barra abre
-      brandSelector.style.left = '0';
-      toggleIcon.setAttribute('d', 'M15 19l-7-7 7-7'); // Seta para a esquerda
-      toggleBtn.style.left = '200px'; // Ajusta a posição da seta para dentro da gaveta
+        // Barra abre
+        brandSelector.style.left = '0';
+        toggleIcon.setAttribute('d', 'M15 19l-7-7 7-7'); // Seta para a esquerda
+        toggleBtn.style.left = '200px'; // Ajusta a posição da seta para dentro da gaveta
     } else {
-      // Barra fecha
-      brandSelector.style.left = '-200px';
-      toggleIcon.setAttribute('d', 'M9 18l6-6-6-6'); // Seta para a direita
-      toggleBtn.style.left = '0'; // Ajusta a posição da seta para fora da gaveta
+        // Barra fecha
+        brandSelector.style.left = '-200px';
+        toggleIcon.setAttribute('d', 'M9 18l6-6-6-6'); // Seta para a direita
+        toggleBtn.style.left = '0'; // Ajusta a posição da seta para fora da gaveta
     }
 }
 
 // Exibir a barra automaticamente após o carregamento inicial
 window.onload = function() {
-  const brandSelector = document.querySelector('.brand-selector');
-  const toggleBtn = document.querySelector('.toggle-btn');
-  
-  brandSelector.style.left = '-200px'; // Barra começa fechada
-  const toggleIcon = document.querySelector('#toggle-icon');
-  toggleIcon.setAttribute('d', 'M9 18l6-6-6-6'); // Seta para a direita
-  toggleBtn.style.left = '0'; // Ajusta a posição da seta para fora da gaveta
-}
+    const brandSelector = document.querySelector('.brand-selector');
+    const toggleBtn = document.querySelector('.toggle-btn');
 
+    brandSelector.style.left = '-200px'; // Barra começa fechada
+    const toggleIcon = document.querySelector('#toggle-icon');
+    toggleIcon.setAttribute('d', 'M9 18l6-6-6-6'); // Seta para a direita
+    toggleBtn.style.left = '0'; // Ajusta a posição da seta para fora da gaveta
+}
