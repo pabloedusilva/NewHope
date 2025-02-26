@@ -1,0 +1,470 @@
+/* CARROSEL */
+.carousel-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    width: 100vw; /* Faz com que o carrossel ocupe toda a largura da tela */
+    height: 100vh; /* Faz com que o carrossel ocupe toda a altura da tela */
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    margin-bottom: 1.5%;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%; /* Ajusta a altura da imagem para ocupar toda a altura do slide */
+    object-fit: cover; /* Garante que a imagem cubra todo o espaço sem distorcer */
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 24px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+.prev {
+    left: 15px;
+}
+
+.next {
+    right: 15px;
+}
+
+@media (max-width: 768px) {
+    .prev, .next {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+/* RODAPÉ */
+footer {
+    background: #000000;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: auto; /* Faz com que o rodapé fique empurrado para o final */
+    width: 100%; /* Faz com que o rodapé ocupe toda a largura da tela */
+}
+
+footer a {
+    color: #00b7ff;
+    text-decoration: none;
+}
+
+footer .socials a {
+    margin: 0 0.5rem;
+    font-size: 20px;
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+}
+
+.social-icon {
+    width: 30px; /* Ajuste o tamanho conforme necessário */
+    height: 30px; /* Ajuste o tamanho conforme necessário */
+    margin: 0 10px; /* Espaçamento entre os ícones */
+    transition: transform 0.3s; /* Transição suave para efeito de hover */
+}
+
+.social-media a:hover .social-icon {
+    transform: scale(1.2);
+}
+
+/* MENU */
+.category-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-wrap: wrap; /* Permite que os itens se movam para a próxima linha em telas menores */
+    width: 100%; /* Faz com que o menu ocupe toda a largura da tela */
+}
+
+.category-item {
+    text-align: center;
+    width: 120px; /* Ajustado para um tamanho menor */
+    margin: 10px; /* Margem entre os itens */
+}
+
+.category-item a {
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.category-item img {
+    width: 120px; /* Ajustado para um tamanho menor */
+    height: 120px; /* Ajustado para um tamanho menor */
+    object-fit: cover;  
+    border-radius: 50%;
+    border: 4px solid #ddd;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ÍCONES DO NAVBAR */
+.nav-icon {
+    width: 20px; /* Ajuste o tamanho do ícone conforme necessário */
+    height: auto; /* Mantém a proporção do ícone */
+    margin-right: 8px; /* Espaço entre o ícone e o texto */
+    vertical-align: middle; /* Alinha o ícone verticalmente ao centro do texto */
+}
+
+/* CARRINHO FIXADO */
+.cart-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    padding: 9px; /* Aumente ou diminua o valor para ajustar o tamanho */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000; /* Garantir que o ícone apareça acima de outros elementos */
+}
+
+.cart-icon-img {
+    width: 35px; /* Aumente ou diminua o valor para ajustar o tamanho do ícone */
+    height: 35px; /* Aumente ou diminua o valor para ajustar o tamanho do ícone */
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 18px; /* Aumente ou diminua o valor para ajustar o tamanho do número */
+    font-weight: bold;
+    border-radius: 50%;
+    width: 24px; /* Aumente ou diminua o valor para ajustar o tamanho da bolinha */
+    height: 24px; /* Aumente ou diminua o valor para ajustar o tamanho da bolinha */
+    text-align: center;
+    line-height: 22px; /* Ajuste conforme o tamanho da bolinha */
+}
+
+/* ALERTA DE ADICIONADO AO CARRINHO */
+/* Fundo escuro */
+#dark-overlay {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fundo mais escuro e opaco */
+    z-index: 1040;
+}
+
+/* Estilo do alerta */
+#custom-alert {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff; /* Fundo branco */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada */
+    border-radius: 12px; /* Bordas mais arredondadas */
+    z-index: 1050;
+    text-align: center;
+    padding: 30px; /* Padding maior para um layout mais arejado */
+    width: 300px; /* Largura ajustada para menor */
+    animation: slideIn 0.5s ease forwards; /* Animação de entrada */
+}
+
+/* Estilo do título */
+#custom-alert h2 {
+    margin: 0 0 15px; /* Margem para separar o título do restante */
+    font-family: 'Arial', sans-serif; /* Fonte moderna */
+    font-size: 18px; /* Tamanho do texto do título */
+    color: #333; /* Cor do texto do título */
+}
+
+/* Estilo da mensagem */
+#custom-alert p {
+    margin: 0 0 20px; /* Margem para separar a mensagem do botão */
+    font-family: 'Arial', sans-serif;
+    font-size: 14px; /* Tamanho do texto da mensagem */
+    color: #666; /* Cor do texto da mensagem */
+}
+
+/* Estilo do botão */
+#custom-alert button {
+    background-color: #28a745; /* Cor verde para o botão */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    color: white; /* Cor do texto do botão */
+    padding: 10px 20px; /* Padding para o botão */
+    font-size: 15px; /* Tamanho do texto do botão */
+    cursor: pointer; /* Cursor de ponteiro */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+    width: 190px; /* Largura fixa para todos os botões */
+    margin: 7px; /* Margem para garantir espaço entre os botões */
+}
+
+/* Animação de slide-in */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateX(-100%); /* Começa a partir da esquerda */
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateX(10%); /* Um pouco para a direita */
+    }
+    100% {
+        transform: translate(-50%, -50%); /* Para o centro */
+    }
+}
+
+/* BOTÕES DE FILTRO DE MARCAS (CHRONIC E BLESSED) */
+.btn-circle {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #007bff; /* Cor de fundo */
+    margin: 0 15px; /* Margem entre os botões */
+    overflow: hidden;
+    transition: background-color 0.3s;
+}
+
+.btn-circle:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+}
+
+.btn-icon {
+    width: 100%; /* Faz a imagem ocupar toda a largura do botão */
+    height: 100%; /* Faz a imagem ocupar toda a altura do botão */
+    object-fit: cover; /* Garante que a imagem ocupe toda a área sem distorcer */
+    display: block; /* Remove o espaçamento abaixo da imagem */
+}
+
+/* ÍCONE DE ®️ "R" */
+.supersmall {
+    font-size: 0.6em;
+    vertical-align: super;
+}
+
+/* CARDS DAS IMAGENS */
+.card {
+    width: 300px; /* Largura ajustada para menor */
+    margin: 20px auto; /* Centraliza horizontalmente com margem automática */
+    border-radius: 16px; /* Bordas arredondadas */
+    background-color: #ffffff; /* Cor de fundo do card */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidade */
+    overflow: hidden; /* Esconde o conteúdo que ultrapassa os limites do card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+    cursor: pointer; /* Indicativo de que o card é clicável */
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Levanta o card ao passar o mouse */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Aumenta a sombra */
+}
+
+.card img {
+    width: 100%; /* A imagem ocupa toda a largura do card */
+    height: auto; /* Mantém a proporção */
+    object-fit: cover; /* A imagem será cortada proporcionalmente */
+}
+
+/* Efeito de fade-in no conteúdo do card */
+.card .content {
+    opacity: 0; /* Começa invisível */
+    animation: fadeIn 0.5s ease-in-out forwards; /* Animação para exibir o conteúdo */
+}
+
+/* Animação de fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Inicia invisível */
+        transform: translateY(10px); /* Começa um pouco abaixo */
+    }
+    to {
+        opacity: 1; /* Torna-se completamente visível */
+        transform: translateY(0); /* Termina no seu lugar original */
+    }
+}
+
+/* Estilo do botão "Ir ao topo" */
+.scroll-to-top {
+    position: fixed; /* Fixa o botão na tela */
+    bottom: 20px; /* Distância da parte inferior */
+    left: 20px; /* Distância da parte esquerda */
+    background-color: #ffffff; /* Cor de fundo do botão */
+    color: rgb(0, 0, 0); /* Cor do texto */
+    border: none; /* Sem borda */
+    border-radius: 50%; /* Botão redondo */
+    width: 40px; /* Largura do botão */
+    height: 40px; /* Altura do botão */
+    display: flex; /* Usando flexbox para centralizar o ícone */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    cursor: pointer; /* Mostra o cursor de pointer quando passa sobre o botão */
+    font-size: 24px; /* Tamanho do ícone */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombras para destacar o botão */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave */
+}
+
+/* Ícone dentro do botão (pode usar o ícone de setinha para cima ou qualquer outro) */
+.scroll-to-top i {
+    font-size: 24px; /* Ajuste o tamanho do ícone */
+}
+
+/* MEDIA QUERIES PARA RESPONDER A TAMAÑOS DE TELA MENOR */
+@media (max-width: 1024px) {
+    .category-item {
+        width: 100px; /* Ajusta a largura dos itens do menu */
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 80%; /* Faz os cards ocuparem 80% da largura em telas pequenas */
+        margin: 10px auto; /* Centraliza os cards */
+    }
+
+    .category-item img {
+        width: 100px; /* Ajusta o tamanho da imagem nos itens do menu */
+        height: 100px; /* Ajusta a altura da imagem nos itens do menu */
+    }
+
+    .prev, .next {
+        width: 30px; /* Ajusta o tamanho dos botões de navegação no carrossel */
+        height: 30px;
+        font-size: 18px; /* Ajusta o tamanho da fonte */
+    }
+
+    .scroll-to-top {
+        width: 35px; /* Ajusta o tamanho do botão "Ir ao topo" */
+        height: 35px;
+    }
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 480px) {
+    .category-menu {
+        flex-direction: column; /* Muda a direção do menu para coluna */
+    }
+
+    .category-item {
+        width: 90%; /* Ajusta a largura dos itens do menu */
+    }
+
+    .prev, .next {
+        width: 25px; /* Ajusta o tamanho dos botões de navegação no carrossel */
+        height: 25px;
+        font-size: 16px; /* Ajusta o tamanho da fonte */
+    }
+
+    .cart-icon {
+        padding: 5px; /* Ajusta o padding do ícone do carrinho */
+    }
+
+    .cart-icon-img {
+        width: 30px; /* Ajuste tamanho do ícone do carrinho */
+        height: 30px;
+    }
+}
+
+
+
+
+
+
+
+/* Barra de seleção fixa na lateral esquerda */
+.brand-selector {
+    position: fixed;
+    top: 50%;
+    left: -200px; /* Inicialmente oculta */
+    transform: translateY(-50%);
+    background: white;
+    padding: 10px 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+    border-radius: 10px;
+    transition: left 0.3s ease; /* Transição suave ao abrir/fechar */
+  }
+
+  .brand-selector button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .brand-selector button:hover {
+    transform: scale(1.1);
+  }
+
+  .brand-selector img {
+    width: 140px;
+    height: 100px;
+    object-fit: contain;
+  }
+
+  /* Estilização da seta */
+  .toggle-btn {
+    position: fixed;
+    top: 50%;
+    left: -30px; /* Coloca a seta bem próxima à gaveta */
+    transform: translateY(-50%);
+    background: white;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    cursor: pointer;
+    transition: left 0.3s ease; /* Transição para ajustar a seta */
+  }
+
+  .toggle-btn svg {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+  }
+
+  /* Estilização das seções */
+  .brand-section {
+    padding: 100px 20px;
+    min-height: 50vh;
+    border-bottom: 1px solid #ddd;
+  }
