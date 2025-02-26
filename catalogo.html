@@ -7,23 +7,20 @@
   <title>New Hope</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
   <!-- ALERTA -->
-  <div id="dark-overlay"></div>
+  <div id="dark-overlay" style="display: none;"></div>
   <div id="custom-alert" style="display: none">
     <h5>Item adicionado ao carrinho!</h5>
     <div>
-      <button class="continue" onclick="continueShopping()">
-        Continuar Comprando
-      </button>
+      <button class="continue" onclick="continueShopping()"> Continuar Comprando </button>
       <button class="cart" onclick="goToCart()">Ir para o Carrinho</button>
     </div>
   </div>
-  <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 
   <!-- NAV-BAR -->
   <header class="bg-dark text-white text-center py-3">
@@ -48,14 +45,13 @@
       </li>
       <li class="nav-item">
         <a href="carrinho.html" class="nav-link text-dark font-navbar">
-          <img src="icons/carrrinho.png" alt="Carrinho" class="nav-icon" />
-          Carrinho
-          <span id="nav-cart-count" class="badge bg-danger"></span>
+          <img src="icons/carrrinho.png" alt="Carrinho" class="nav-icon" /> Carrinho <span id="nav-cart-count"
+            class="badge bg-danger"></span>
         </a>
       </li>
     </ul>
   </nav>
-  <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+
   <!-- Barra de seleção das marcas -->
   <div class="brand-selector">
     <button onclick="scrollToSection('marca1')">
@@ -68,7 +64,6 @@
       <img src="imagens/Time.png" alt="Marca 3">
     </button>
   </div>
-
   <!-- Botão da seta -->
   <div class="toggle-btn" onclick="toggleBrandSelector()">
     <svg id="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
@@ -76,14 +71,14 @@
       <path d="M9 18l6-6-6-6"></path>
     </svg>
   </div>
-  <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 
   <!-- CHRONIC -->
-  <!-- Produto 1 -->
   <section id="marca1" class="brand-section">
     <h2>Chronic</h2>
+    <!-- Produto 1 -->
     <div class="col-md-4 mb-3" data-product-id="produto1">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Chronic #001', ['imagens/frente.webp', 'imagens/costas.webp'], 'REF: 001', 'Tamanho disponível: G')">
         <div id="carouselProduto1" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -106,18 +101,22 @@
           <h5 class="card-title">Camiseta Chronic #001</h5>
           <p class="card-text">REF: 001</p>
           <p class="text-muted">Tamanho disponível: <strong>G</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto1')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto1')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente.webp', 'imagens/costas.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 2 -->
     <div class="col-md-4 mb-3" data-product-id="produto2">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Chronic #002', ['imagens/frente.webp', 'imagens/costas.webp'], 'REF: 002', 'Tamanho disponível: G')">
         <div id="carouselProduto2" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -140,18 +139,22 @@
           <h5 class="card-title">Camiseta Chronic #002</h5>
           <p class="card-text">REF: 002</p>
           <p class="text-muted">Tamanho disponível: <strong>G</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto2')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto2')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente.webp', 'imagens/costas.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 3 -->
     <div class="col-md-4 mb-3" data-product-id="produto3">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Chronic #003', ['imagens/frente.webp', 'imagens/costas.webp'], 'REF: 003', 'Tamanho disponível: M')">
         <div id="carouselProduto3" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -174,18 +177,22 @@
           <h5 class="card-title">Camiseta Chronic #003</h5>
           <p class="card-text">REF: 003</p>
           <p class="text-muted">Tamanho disponível: <strong>M</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto3')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto3')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente.webp', 'imagens/costas.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 4 -->
     <div class="col-md-4 mb-3" data-product-id="produto4">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Chronic #004', ['imagens/frente.webp', 'imagens/costas.webp'], 'REF: 004', 'Tamanho disponível: P')">
         <div id="carouselProduto4" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -208,18 +215,22 @@
           <h5 class="card-title">Camiseta Chronic #004</h5>
           <p class="card-text">REF: 004</p>
           <p class="text-muted">Tamanho disponível: <strong>P</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto4')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto4')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente.webp', 'imagens/costas.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 5 -->
     <div class="col-md-4 mb-3" data-product-id="produto5">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Chronic #005', ['imagens/frente.webp', 'imagens/costas.webp'], 'REF: 005', 'Tamanho disponível: GG')">
         <div id="carouselProduto5" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -242,18 +253,22 @@
           <h5 class="card-title">Camiseta Chronic #005</h5>
           <p class="card-text">REF: 005</p>
           <p class="text-muted">Tamanho disponível: <strong>GG</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto5')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto5')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente.webp', 'imagens/costas.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 6 -->
     <div class="col-md-4 mb-3" data-product-id="produto6">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Chronic #006', ['imagens/frente.webp', 'imagens/costas.webp'], 'REF: 006', 'Tamanho disponível: G')">
         <div id="carouselProduto6" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -276,18 +291,22 @@
           <h5 class="card-title">Camiseta Chronic #006</h5>
           <p class="card-text">REF: 006</p>
           <p class="text-muted">Tamanho disponível: <strong>G</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto6')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto6')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente.webp', 'imagens/costas.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 7 -->
     <div class="col-md-4 mb-3" data-product-id="produto7">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Chronic #007', ['imagens/frente.webp', 'imagens/costas.webp'], 'REF: 007', 'Tamanho disponível: M')">
         <div id="carouselProduto7" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -310,18 +329,22 @@
           <h5 class="card-title">Camiseta Chronic #007</h5>
           <p class="card-text">REF: 007</p>
           <p class="text-muted">Tamanho disponível: <strong>M</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto7')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto7')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente.webp', 'imagens/costas.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 8 -->
     <div class="col-md-4 mb-3" data-product-id="produto8">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Chronic #008', ['imagens/frente.webp', 'imagens/costas.webp'], 'REF: 008', 'Tamanho disponível: GG')">
         <div id="carouselProduto8" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -344,18 +367,22 @@
           <h5 class="card-title">Camiseta Chronic #008</h5>
           <p class="card-text">REF: 008</p>
           <p class="text-muted">Tamanho disponível: <strong>GG</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto8')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto8')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente.webp', 'imagens/costas.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 9 -->
     <div class="col-md-4 mb-3" data-product-id="produto9">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Chronic #009', ['imagens/frente.webp', 'imagens/costas.webp'], 'REF: 009', 'Tamanho disponível: P')">
         <div id="carouselProduto9" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -378,18 +405,22 @@
           <h5 class="card-title">Camiseta Chronic #009</h5>
           <p class="card-text">REF: 009</p>
           <p class="text-muted">Tamanho disponível: <strong>P</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto9')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto9')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente.webp', 'imagens/costas.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 10 -->
     <div class="col-md-4 mb-3" data-product-id="produto10">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Chronic #010', ['imagens/frente.webp', 'imagens/costas.webp'], 'REF: 010', 'Tamanho disponível: G')">
         <div id="carouselProduto10" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -412,31 +443,34 @@
           <h5 class="card-title">Camiseta Chronic #010</h5>
           <p class="card-text">REF: 010</p>
           <p class="text-muted">Tamanho disponível: <strong>G</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto10')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto10')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente.webp', 'imagens/costas.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-  <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-  <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
   <!-- BLESSED -->
   <section id="marca2" class="brand-section">
     <h2>Blessed Choice</h2>
     <!-- Produto 11 -->
     <div class="col-md-4 mb-3" data-product-id="produto11">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Blessed #011', ['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'], 'REF: 011', 'Tamanho disponível: M')">
         <div id="carouselProduto11" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #011" />
             </div>
             <div class="carousel-item">
-              <img src="imagens/frente.webp" class="d-block w-100" alt="Camiseta Blessed #011" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #011" />
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto11" data-bs-slide="prev">
@@ -452,25 +486,29 @@
           <h5 class="card-title">Camiseta Blessed #011</h5>
           <p class="card-text">REF: 011</p>
           <p class="text-muted">Tamanho disponível: <strong>M</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto11')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto11')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 12 -->
     <div class="col-md-4 mb-3" data-product-id="produto12">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Blessed #012', ['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'], 'REF: 012', 'Tamanho disponível: G')">
         <div id="carouselProduto12" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #012" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #012" />
             </div>
             <div class="carousel-item">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #012" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #012" />
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto12" data-bs-slide="prev">
@@ -483,28 +521,32 @@
           </button>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Camiseta Chronic #012</h5>
+          <h5 class="card-title">Camiseta Blessed #012</h5>
           <p class="card-text">REF: 012</p>
           <p class="text-muted">Tamanho disponível: <strong>G</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto12')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto12')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 13 -->
     <div class="col-md-4 mb-3" data-product-id="produto13">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Blessed #013', ['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'], 'REF: 013', 'Tamanho disponível: M')">
         <div id="carouselProduto13" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #013" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #013" />
             </div>
             <div class="carousel-item">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #013" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #013" />
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto13" data-bs-slide="prev">
@@ -517,28 +559,32 @@
           </button>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Camiseta Chronic #013</h5>
+          <h5 class="card-title">Camiseta Blessed #013</h5>
           <p class="card-text">REF: 013</p>
           <p class="text-muted">Tamanho disponível: <strong>M</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto13')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto13')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 14 -->
     <div class="col-md-4 mb-3" data-product-id="produto14">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Blessed #014', ['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'], 'REF: 014', 'Tamanho disponível: GG')">
         <div id="carouselProduto14" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="imagens/frente.webp" class="d-block w-100" alt="Camiseta Chronic #014" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #014" />
             </div>
             <div class="carousel-item">
-              <img src="imagens/frente.webp" class="d-block w-100" alt="Camiseta Chronic #014" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #014" />
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto14" data-bs-slide="prev">
@@ -551,28 +597,32 @@
           </button>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Camiseta Chronic #014</h5>
+          <h5 class="card-title">Camiseta Blessed #014</h5>
           <p class="card-text">REF: 014</p>
           <p class="text-muted">Tamanho disponível: <strong>GG</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto14')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto14')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 15 -->
     <div class="col-md-4 mb-3" data-product-id="produto15">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Blessed #015', ['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'], 'REF: 015', 'Tamanho disponível: P')">
         <div id="carouselProduto15" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #015" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #015" />
             </div>
             <div class="carousel-item">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #015" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #015" />
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto15" data-bs-slide="prev">
@@ -585,28 +635,32 @@
           </button>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Camiseta Chronic #015</h5>
+          <h5 class="card-title">Camiseta Blessed #015</h5>
           <p class="card-text">REF: 015</p>
           <p class="text-muted">Tamanho disponível: <strong>P</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto15')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto15')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 16 -->
     <div class="col-md-4 mb-3" data-product-id="produto16">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Blessed #016', ['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'], 'REF: 016', 'Tamanho disponível: G')">
         <div id="carouselProduto16" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #016" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #016" />
             </div>
             <div class="carousel-item">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #016" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #016" />
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto16" data-bs-slide="prev">
@@ -619,28 +673,32 @@
           </button>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Camiseta Chronic #016</h5>
+          <h5 class="card-title">Camiseta Blessed #016</h5>
           <p class="card-text">REF: 016</p>
           <p class="text-muted">Tamanho disponível: <strong>G</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto16')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto16')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 17 -->
     <div class="col-md-4 mb-3" data-product-id="produto17">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Blessed #017', ['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'], 'REF: 017', 'Tamanho disponível: GG')">
         <div id="carouselProduto17" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #017" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #017" />
             </div>
             <div class="carousel-item">
-              <img src="imagens/frente.webp" class="d-block w-100" alt="Camiseta Chronic #017" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #017" />
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto17" data-bs-slide="prev">
@@ -653,28 +711,32 @@
           </button>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Camiseta Chronic #017</h5>
+          <h5 class="card-title">Camiseta Blessed #017</h5>
           <p class="card-text">REF: 017</p>
           <p class="text-muted">Tamanho disponível: <strong>GG</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto17')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto17')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 18 -->
     <div class="col-md-4 mb-3" data-product-id="produto18">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Blessed #018', ['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'], 'REF: 018', 'Tamanho disponível: P')">
         <div id="carouselProduto18" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #018" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #018" />
             </div>
             <div class="carousel-item">
-              <img src="imagens/frente.webp" class="d-block w-100" alt="Camiseta Chronic #018" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #018" />
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto18" data-bs-slide="prev">
@@ -687,28 +749,32 @@
           </button>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Camiseta Chronic #018</h5>
+          <h5 class="card-title">Camiseta Blessed #018</h5>
           <p class="card-text">REF: 018</p>
           <p class="text-muted">Tamanho disponível: <strong>P</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto18')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto18')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 19 -->
     <div class="col-md-4 mb-3" data-product-id="produto19">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Blessed #019', ['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'], 'REF: 019', 'Tamanho disponível: G')">
         <div id="carouselProduto19" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #019" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #019" />
             </div>
             <div class="carousel-item">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #019" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #019" />
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto19" data-bs-slide="prev">
@@ -721,28 +787,32 @@
           </button>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Camiseta Chronic #019</h5>
+          <h5 class="card-title">Camiseta Blessed #019</h5>
           <p class="card-text">REF: 019</p>
           <p class="text-muted">Tamanho disponível: <strong>G</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto19')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto19')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
     <!-- Produto 20 -->
     <div class="col-md-4 mb-3" data-product-id="produto20">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Blessed #020', ['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'], 'REF: 020', 'Tamanho disponível: GG')">
         <div id="carouselProduto20" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #020" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #020" />
             </div>
             <div class="carousel-item">
-              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Chronic #020" />
+              <img src="imagens/frente_blessed.webp" class="d-block w-100" alt="Camiseta Blessed #020" />
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto20" data-bs-slide="prev">
@@ -755,29 +825,30 @@
           </button>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Camiseta Chronic #020</h5>
+          <h5 class="card-title">Camiseta Blessed #020</h5>
           <p class="card-text">REF: 020</p>
           <p class="text-muted">Tamanho disponível: <strong>GG</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto20')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto20')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_blessed.webp', 'imagens/frente_blessed.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-    </div>
-    </div>
   </section>
-
-  <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-  <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-  <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 
   <!-- CAMISAS DE TIME -->
   <section id="marca3" class="brand-section">
     <h2>Camisas de Time</h2>
     <!-- Produto 21 -->
     <div class="col-md-4 mb-3" data-product-id="produto21">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Time #021', ['imagens/frente_time_1.webp', 'imagens/frente_time_1_back.webp'], 'REF: 021', 'Tamanho disponível: M')">
         <div id="carouselProduto21" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -800,16 +871,22 @@
           <h5 class="card-title">Camiseta Time #021</h5>
           <p class="card-text">REF: 021</p>
           <p class="text-muted">Tamanho disponível: <strong>M</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto21')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto21')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_time_1.webp', 'imagens/frente_time_1_back.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
     <!-- Produto 22 -->
     <div class="col-md-4 mb-3" data-product-id="produto22">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Time #022', ['imagens/frente_time_2.webp', 'imagens/frente_time_2_back.webp'], 'REF: 022', 'Tamanho disponível: G')">
         <div id="carouselProduto22" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -832,16 +909,22 @@
           <h5 class="card-title">Camiseta Time #022</h5>
           <p class="card-text">REF: 022</p>
           <p class="text-muted">Tamanho disponível: <strong>G</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto22')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto22')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_time_2.webp', 'imagens/frente_time_2_back.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
     <!-- Produto 23 -->
     <div class="col-md-4 mb-3" data-product-id="produto23">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Time #023', ['imagens/frente_time_3.webp', 'imagens/frente_time_3_back.webp'], 'REF: 023', 'Tamanho disponível: P')">
         <div id="carouselProduto23" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -864,16 +947,22 @@
           <h5 class="card-title">Camiseta Time #023</h5>
           <p class="card-text">REF: 023</p>
           <p class="text-muted">Tamanho disponível: <strong>P</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto23')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto23')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_time_3.webp', 'imagens/frente_time_3_back.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
-
     <!-- Produto 24 -->
     <div class="col-md-4 mb-3" data-product-id="produto24">
-      <div class="card">
+      <div class="card"
+        onclick="openModal('Camiseta Time #024', ['imagens/frente_time_4.webp', 'imagens/frente_time_4_back.webp'], 'REF: 024', 'Tamanho disponível: GG')">
         <div id="carouselProduto24" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -896,214 +985,255 @@
           <h5 class="card-title">Camiseta Time #024</h5>
           <p class="card-text">REF: 024</p>
           <p class="text-muted">Tamanho disponível: <strong>GG</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto24')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto24')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom"
+            onclick="openImageModal(['imagens/frente_time_4.webp', 'imagens/frente_time_4_back.webp'])">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
 
     <!-- Produto 25 -->
-    <div class="col-md-4 mb-3" data-product-id="produto25">
-      <div class="card">
-        <div id="carouselProduto25" class="carousel slide" data-bs-ride="carousel">
+<div class="col-md-4 mb-3" data-product-id="produto25">
+  <div class="card" onclick="openModal('Camiseta Time #025', ['imagens/frente_time_5.webp', 'imagens/frente_time_5_back.webp'], 'REF: 025', 'Tamanho disponível: M')">
+      <div class="carousel slide" id="carouselProduto25" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="imagens/frente_time_5.webp" class="d-block w-100" alt="Camiseta Time #025" />
-            </div>
-            <div class="carousel-item">
-              <img src="imagens/frente_time_5_back.webp" class="d-block w-100" alt="Camiseta Time #025" />
-            </div>
+              <div class="carousel-item active">
+                  <img src="imagens/frente_time_5.webp" class="d-block w-100" alt="Camiseta Time #025" />
+              </div>
+              <div class="carousel-item">
+                  <img src="imagens/frente_time_5_back.webp" class="d-block w-100" alt="Camiseta Time #025" />
+              </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto25" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto25" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próximo</span>
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Próximo</span>
           </button>
-        </div>
-        <div class="card-body">
+      </div>
+      <div class="card-body">
           <h5 class="card-title">Camiseta Time #025</h5>
           <p class="card-text">REF: 025</p>
           <p class="text-muted">Tamanho disponível: <strong>M</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto25')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto25')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom" onclick="openImageModal(['imagens/frente_time_5.webp', 'imagens/frente_time_5_back.webp'])">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z"/>
+              </svg>
           </button>
-        </div>
       </div>
-    </div>
-
-    <!-- Produto 26 -->
-    <div class="col-md-4 mb-3" data-product-id="produto26">
-      <div class="card">
-        <div id="carouselProduto26" class="carousel slide" data-bs-ride="carousel">
+  </div>
+</div>
+<!-- Produto 26 -->
+<div class="col-md-4 mb-3" data-product-id="produto26">
+  <div class="card" onclick="openModal('Camiseta Time #026', ['imagens/frente_time_6.webp', 'imagens/frente_time_6_back.webp'], 'REF: 026', 'Tamanho disponível: GG')">
+      <div id="carouselProduto26" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="imagens/frente_time_6.webp" class="d-block w-100" alt="Camiseta Time #026" />
-            </div>
-            <div class="carousel-item">
-              <img src="imagens/frente_time_6_back.webp" class="d-block w-100" alt="Camiseta Time #026" />
-            </div>
+              <div class="carousel-item active">
+                  <img src="imagens/frente_time_6.webp" class="d-block w-100" alt="Camiseta Time #026" />
+              </div>
+              <div class="carousel-item">
+                  <img src="imagens/frente_time_6_back.webp" class="d-block w-100" alt="Camiseta Time #026" />
+              </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto26" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto26" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próximo</span>
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Próximo</span>
           </button>
-        </div>
-        <div class="card-body">
+      </div>
+      <div class="card-body">
           <h5 class="card-title">Camiseta Time #026</h5>
           <p class="card-text">REF: 026</p>
           <p class="text-muted">Tamanho disponível: <strong>GG</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto26')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto26')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom" onclick="openImageModal(['imagens/frente_time_6.webp', 'imagens/frente_time_6_back.webp'])">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z"/>
+              </svg>
           </button>
-        </div>
       </div>
-    </div>
-
-    <!-- Produto 27 -->
-    <div class="col-md-4 mb-3" data-product-id="produto27">
-      <div class="card">
-        <div id="carouselProduto27" class="carousel slide" data-bs-ride="carousel">
+  </div>
+</div>
+<!-- Produto 27 -->
+<div class="col-md-4 mb-3" data-product-id="produto27">
+  <div class="card" onclick="openModal('Camiseta Time #027', ['imagens/frente_time_7.webp', 'imagens/frente_time_7_back.webp'], 'REF: 027', 'Tamanho disponível: P')">
+      <div id="carouselProduto27" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="imagens/frente_time_7.webp" class="d-block w-100" alt="Camiseta Time #027" />
-            </div>
-            <div class="carousel-item">
-              <img src="imagens/frente_time_7_back.webp" class="d-block w-100" alt="Camiseta Time #027" />
-            </div>
+              <div class="carousel-item active">
+                  <img src="imagens/frente_time_7.webp" class="d-block w-100" alt="Camiseta Time #027" />
+              </div>
+              <div class="carousel-item">
+                  <img src="imagens/frente_time_7_back.webp" class="d-block w-100" alt="Camiseta Time #027" />
+              </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto27" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto27" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próximo</span>
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Próximo</span>
           </button>
-        </div>
-        <div class="card-body">
+      </div>
+      <div class="card-body">
           <h5 class="card-title">Camiseta Time #027</h5>
           <p class="card-text">REF: 027</p>
           <p class="text-muted">Tamanho disponível: <strong>P</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto27')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto27')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom" onclick="openImageModal(['imagens/frente_time_7.webp', 'imagens/frente_time_7_back.webp'])">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z"/>
+              </svg>
           </button>
-        </div>
       </div>
-    </div>
-
-    <!-- Produto 28 -->
-    <div class="col-md-4 mb-3" data-product-id="produto28">
-      <div class="card">
-        <div id="carouselProduto28" class="carousel slide" data-bs-ride="carousel">
+  </div>
+</div>
+<!-- Produto 28 -->
+<div class="col-md-4 mb-3" data-product-id="produto28">
+  <div class="card" onclick="openModal('Camiseta Time #028', ['imagens/frente_time_8.webp', 'imagens/frente_time_8_back.webp'], 'REF: 028', 'Tamanho disponível: M')">
+      <div id="carouselProduto28" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="imagens/frente_time_8.webp" class="d-block w-100" alt="Camiseta Time #028" />
-            </div>
-            <div class="carousel-item">
-              <img src="imagens/frente_time_8_back.webp" class="d-block w-100" alt="Camiseta Time #028" />
-            </div>
+              <div class="carousel-item active">
+                  <img src="imagens/frente_time_8.webp" class="d-block w-100" alt="Camiseta Time #028" />
+              </div>
+              <div class="carousel-item">
+                  <img src="imagens/frente_time_8_back.webp" class="d-block w-100" alt="Camiseta Time #028" />
+              </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto28" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto28" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próximo</span>
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Próximo</span>
           </button>
-        </div>
-        <div class="card-body">
+      </div>
+      <div class="card-body">
           <h5 class="card-title">Camiseta Time #028</h5>
           <p class="card-text">REF: 028</p>
           <p class="text-muted">Tamanho disponível: <strong>M</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto28')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto28')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom" onclick="openImageModal(['imagens/frente_time_8.webp', 'imagens/frente_time_8_back.webp'])">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z"/>
+              </svg>
           </button>
-        </div>
       </div>
-    </div>
-
-    <!-- Produto 29 -->
-    <div class="col-md-4 mb-3" data-product-id="produto29">
-      <div class="card">
-        <div id="carouselProduto29" class="carousel slide" data-bs-ride="carousel">
+  </div>
+</div>
+<!-- Produto 29 -->
+<div class="col-md-4 mb-3" data-product-id="produto29">
+  <div class="card" onclick="openModal('Camiseta Time #029', ['imagens/frente_time_9.webp', 'imagens/frente_time_9_back.webp'], 'REF: 029', 'Tamanho disponível: GG')">
+      <div id="carouselProduto29" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="imagens/frente_time_9.webp" class="d-block w-100" alt="Camiseta Time #029" />
-            </div>
-            <div class="carousel-item">
-              <img src="imagens/frente_time_9_back.webp" class="d-block w-100" alt="Camiseta Time #029" />
-            </div>
+              <div class="carousel-item active">
+                  <img src="imagens/frente_time_9.webp" class="d-block w-100" alt="Camiseta Time #029" />
+              </div>
+              <div class="carousel-item">
+                  <img src="imagens/frente_time_9_back.webp" class="d-block w-100" alt="Camiseta Time #029" />
+              </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto29" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto29" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próximo</span>
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Próximo</span>
           </button>
-        </div>
-        <div class="card-body">
+      </div>
+      <div class="card-body">
           <h5 class="card-title">Camiseta Time #029</h5>
           <p class="card-text">REF: 029</p>
           <p class="text-muted">Tamanho disponível: <strong>GG</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto29')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto29')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom" onclick="openImageModal(['imagens/frente_time_9.webp', 'imagens/frente_time_9_back.webp'])">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z"/>
+              </svg>
           </button>
-        </div>
       </div>
-    </div>
-
-    <!-- Produto 30 -->
-    <div class="col-md-4 mb-3" data-product-id="produto30">
-      <div class="card">
-        <div id="carouselProduto30" class="carousel slide" data-bs-ride="carousel">
+  </div>
+</div>
+<!-- Produto 30 -->
+<div class="col-md-4 mb-3" data-product-id="produto30">
+  <div class="card" onclick="openModal('Camiseta Time #030', ['imagens/frente_time_10.webp', 'imagens/frente_time_10_back.webp'], 'REF: 030', 'Tamanho disponível: P')">
+      <div id="carouselProduto30" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="imagens/frente_time_10.webp" class="d-block w-100" alt="Camiseta Time #030" />
-            </div>
-            <div class="carousel-item">
-              <img src="imagens/frente_time_10_back.webp" class="d-block w-100" alt="Camiseta Time #030" />
-            </div>
+              <div class="carousel-item active">
+                  <img src="imagens/frente_time_10.webp" class="d-block w-100" alt="Camiseta Time #030" />
+              </div>
+              <div class="carousel-item">
+                  <img src="imagens/frente_time_10_back.webp" class="d-block w-100" alt="Camiseta Time #030" />
+              </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduto30" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselProduto30" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próximo</span>
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Próximo</span>
           </button>
-        </div>
-        <div class="card-body">
+      </div>
+      <div class="card-body">
           <h5 class="card-title">Camiseta Time #030</h5>
           <p class="card-text">REF: 030</p>
           <p class="text-muted">Tamanho disponível: <strong>P</strong></p>
-          <button class="btn btn-dark" onclick="addToCart('produto30')">
-            Adicionar ao Carrinho
+          <button class="btn btn-dark" onclick="addToCart('produto30')">Adicionar ao Carrinho</button>
+          <button class="btn btn-outline-secondary btn-zoom" onclick="openImageModal(['imagens/frente_time_10.webp', 'imagens/frente_time_10_back.webp'])">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a5.5 5.5 0 1 0-1.398 1.398l3.645 3.644a1 1 0 0 0 1.415-1.415l-3.644-3.645zm-6.89-1.01a4.5 4.5 0 1 1 6.364 0 4.5 4.5 0 0 1-6.364 0z"/>
+              </svg>
+          </button>
+      </div>
+  </div>
+</div>
+
+  <!-- Modal de Imagem Ampliada -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="imageModalLabel">Detalhes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <!-- Ícone SVG de fechar -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1.646 1.646a.5.5 0 0 1 .708 0L8 7.293l5.646-5.647a.5.5 0 1 1 .708.708L8.707 8l5.647 5.646a.5.5 0 0 1-.708.708L8 8.707l-5.646 5.647a.5.5 0 0 1-.708-.708L7.293 8 1.646 2.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img id="modalImage" src="" class="img-fluid zoom-image" alt="Product Image" />
+          <button class="zoom-button" onclick="zoomImage()">
+            Próxima
           </button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
   <!-- CARRINHO FIXADO -->
   <div id="cart-icon" class="cart-icon" onclick="goToCart()">
     <img src="icons/carrrinho.png" alt="Carrinho" class="cart-icon-img" />
     <span id="fixed-cart-count" class="cart-count"></span>
   </div>
 
-  <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
   <!-- RODAPÉ -->
   <footer id="contato">
     <p>&copy; 2024 LojaTeste. Todos os direitos reservados.</p>
