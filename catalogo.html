@@ -1203,30 +1203,37 @@
   </div>
 </div>
 
-  <!-- Modal de Imagem Ampliada -->
-  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="imageModalLabel">Detalhes</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            <!-- Ícone SVG de fechar -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x"
-              viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M1.646 1.646a.5.5 0 0 1 .708 0L8 7.293l5.646-5.647a.5.5 0 1 1 .708.708L8.707 8l5.647 5.646a.5.5 0 0 1-.708.708L8 8.707l-5.646 5.647a.5.5 0 0 1-.708-.708L7.293 8 1.646 2.354a.5.5 0 0 1 0-.708z" />
-            </svg>
-          </button>
+<!-- Modal de Imagem Ampliada -->
+<div class="modal" id="imageModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Detalhes da Imagem</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 1.646a.5.5 0 0 1 .708 0L8 7.293l5.646-5.647a.5.5 0 1 1 .708.708L8.707 8l5.647 5.646a.5.5 0 0 1-.708.708L8 8.707l-5.646 5.647a.5.5 0 0 1-.708-.708L7.293 8 1.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="image-container">
+          <img id="modalImage" src="" class="img-fluid" alt="Imagem do Produto" />
         </div>
-        <div class="modal-body">
-          <img id="modalImage" src="" class="img-fluid zoom-image" alt="Product Image" />
-          <button class="zoom-button" onclick="zoomImage()">
-            Próxima
-          </button>
+        <div class="thumbnail-container">
+          <img id="currentThumbnail" class="thumbnail active" src="" alt="Imagem Atual" />
+          <img id="nextThumbnail" class="thumbnail" src="" alt="Próxima Imagem" onclick="nextImage()" />
         </div>
+      </div>
+      <div class="modal-footer">
+        <button class="nav-button prev" onclick="prevImage()">&#10094;</button>
+        <button class="nav-button next" onclick="nextImage()">&#10095;</button>
       </div>
     </div>
   </div>
+</div>
+
 
   <!-- CARRINHO FIXADO -->
   <div id="cart-icon" class="cart-icon" onclick="goToCart()">
