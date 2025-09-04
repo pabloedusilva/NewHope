@@ -1973,13 +1973,25 @@ footer {
     /* Aumenta área de toque */
     .nav-link,
     .icon-item,
-    .product-action,
-    .carousel-control {
+    .product-action {
         min-height: 44px;
         min-width: 44px;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    
+    /* Mantém controles do carrossel pequenos mesmo em touch */
+    .carousel-control {
+        min-height: auto;
+        min-width: auto;
+        width: 8px;
+        height: 8px;
+        margin: 0 3px;
+    }
+    
+    .carousel-control.active {
+        transform: scale(1.2);
     }
 }
 
