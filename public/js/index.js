@@ -98,7 +98,7 @@ function Benefits() {
         <div className="benefits-bar">
           <div className="benefit-item">
             <div className="benefit-icon">
-              <i className="fas fa-percentage"></i>
+              <i className="fas fa-tags"></i>
             </div>
             <div className="benefit-text">
               <span className="benefit-code">PRIMEIRACOMPRA</span>
