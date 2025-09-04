@@ -657,6 +657,99 @@ header.scrolled {
     }
 }
 
+/* Faixa Frete Grátis Infinita */
+.frete-gratis-banner {
+    background: #000000;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.frete-gratis-content {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+}
+
+.frete-gratis-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-infinite 20s linear infinite;
+    gap: 0;
+    will-change: transform;
+}
+
+.frete-gratis-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 40px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.frete-gratis-item::after {
+    content: '•';
+    position: absolute;
+    right: 20px;
+    color: #666;
+    font-size: 16px;
+}
+
+.frete-gratis-item:last-child::after {
+    display: none;
+}
+
+.frete-gratis-item i {
+    font-size: 16px;
+    color: #ffffff;
+    min-width: 16px;
+}
+
+@keyframes scroll-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+}
+
+/* Remover hover para garantir movimento contínuo */
+.frete-gratis-banner * {
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .frete-gratis-item {
+        padding: 14px 30px;
+        font-size: 13px;
+        gap: 10px;
+    }
+    
+    .frete-gratis-item i {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .frete-gratis-item {
+        padding: 12px 25px;
+        font-size: 12px;
+        gap: 8px;
+    }
+    
+    .frete-gratis-item i {
+        font-size: 13px;
+    }
+}
+
 /* Melhorias para touch devices */
 @media (hover: none) and (pointer: coarse) {
     .category-card:hover {
