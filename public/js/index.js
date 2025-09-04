@@ -2,33 +2,33 @@
 
 // Dados dos produtos
 const productsData = [
-  { id: 1, name: 'Camiseta Oversized Graphic', price: 129.90, oldPrice: 159.90, image: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', category: 'camisetas' },
-  { id: 2, name: 'Moletom Com Capuz', price: 249.90, image: 'https://images.unsplash.com/photo-1588117305388-c2631a279f82?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', category: 'moletons' },
-  { id: 3, name: 'Calça Cargo Street', price: 189.90, image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', category: 'calcas' },
-  { id: 4, name: 'Tênis Limited Edition', price: 399.90, oldPrice: 499.90, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', category: 'tenis' },
-  { id: 5, name: 'Boné Streetwear', price: 89.90, image: 'https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', category: 'acessorios' },
-  { id: 6, name: 'Jaqueta Jeans Destroyed', price: 299.90, oldPrice: 349.90, image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', category: 'jaquetas' },
-  { id: 7, name: 'Regata Graphic', price: 79.90, image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', category: 'camisetas' },
-  { id: 8, name: 'Short Cargo', price: 139.90, image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', category: 'shorts' }
+  { id: 1, name: 'Camiseta Oversized Graphic', price: 129.90, oldPrice: 159.90, image: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75', category: 'camisetas' },
+  { id: 2, name: 'Moletom Com Capuz', price: 249.90, image: 'https://images.unsplash.com/photo-1588117305388-c2631a279f82?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75', category: 'moletons' },
+  { id: 3, name: 'Calça Cargo Street', price: 189.90, image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75', category: 'calcas' },
+  { id: 4, name: 'Tênis Limited Edition', price: 399.90, oldPrice: 499.90, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75', category: 'tenis' },
+  { id: 5, name: 'Boné Streetwear', price: 89.90, image: 'https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75', category: 'acessorios' },
+  { id: 6, name: 'Jaqueta Jeans Destroyed', price: 299.90, oldPrice: 349.90, image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75', category: 'jaquetas' },
+  { id: 7, name: 'Regata Graphic', price: 79.90, image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75', category: 'camisetas' },
+  { id: 8, name: 'Short Cargo', price: 139.90, image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75', category: 'shorts' }
 ];
 
 // Dados das categorias para o carousel
 const categoriesData = [
-  { id: 1, name: 'JEANS', image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-  { id: 2, name: 'SHORTS', image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-  { id: 3, name: 'CAMISETAS', image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-  { id: 4, name: 'TÊNIS', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-  { id: 5, name: 'MOLETOM', image: 'https://images.unsplash.com/photo-1588117305388-c2631a279f82?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-  { id: 6, name: 'JAQUETAS', image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-  { id: 7, name: 'BONÉS', image: 'https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-  { id: 8, name: 'REGATAS', image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }
+  { id: 1, name: 'JEANS', image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
+  { id: 2, name: 'SHORTS', image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
+  { id: 3, name: 'CAMISETAS', image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
+  { id: 4, name: 'TÊNIS', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
+  { id: 5, name: 'MOLETOM', image: 'https://images.unsplash.com/photo-1588117305388-c2631a279f82?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
+  { id: 6, name: 'JAQUETAS', image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
+  { id: 7, name: 'BONÉS', image: 'https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
+  { id: 8, name: 'REGATAS', image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' }
 ];
 
 // Dados do carrossel
 const carouselData = [
-  { id: 1, title: 'BLACK FRIDAY ATÉ 70% OFF', description: 'Aproveite os melhores descontos em peças selecionadas. Edição limitada!', image: 'https://images.unsplash.com/photo-1463100099107-aa0980c362e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80', buttonText: 'Conferir Ofertas' },
-  { id: 2, title: 'COLEÇÃO VERÃO 2023', description: 'As peças mais frescas e estilosas para o verão já estão disponíveis!', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1620&q=80', buttonText: 'Ver Coleção' },
-  { id: 3, title: 'FRETE GRÁTIS EM TODAS AS COMPRAS', description: 'Aproveite o frete grátis em todos os produtos durante o mês de lançamento!', image: 'https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80', buttonText: 'Comprar Agora' }
+  { id: 1, title: 'BLACK FRIDAY ATÉ 70% OFF', description: 'Aproveite os melhores descontos em peças selecionadas. Edição limitada!', image: 'https://images.unsplash.com/photo-1463100099107-aa0980c362e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75', buttonText: 'Conferir Ofertas' },
+  { id: 2, title: 'COLEÇÃO VERÃO 2023', description: 'As peças mais frescas e estilosas para o verão já estão disponíveis!', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75', buttonText: 'Ver Coleção' },
+  { id: 3, title: 'FRETE GRÁTIS EM TODAS AS COMPRAS', description: 'Aproveite o frete grátis em todos os produtos durante o mês de lançamento!', image: 'https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75', buttonText: 'Comprar Agora' }
 ];
 
 // Componentes
@@ -77,7 +77,8 @@ function Hero() {
           muted
           loop
           playsInline
-          poster="https://images.unsplash.com/photo-1556906781-2f0520405b71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+          preload="metadata"
+          poster="https://images.unsplash.com/photo-1556906781-2f0520405b71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=60"
         >
           <source src="./video/intro1.mp4" type="video/mp4" />
           Seu navegador não suporta vídeo em HTML5.
@@ -132,9 +133,30 @@ function Categories() {
   const [dragOffset, setDragOffset] = React.useState(0);
   const [dragStartTime, setDragStartTime] = React.useState(0);
   const [hasMoved, setHasMoved] = React.useState(false);
+  const [preloadedImages, setPreloadedImages] = React.useState(new Set());
 
   // Criar loop infinito: categorias originais + primeira categoria clonada no final
   const infiniteCategories = [...categoriesData, categoriesData[0]];
+
+  // Preload das primeiras 3 imagens para carregamento instantâneo
+  React.useEffect(() => {
+    const preloadImages = async () => {
+      const firstImages = categoriesData.slice(0, 3);
+      const promises = firstImages.map(category => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => {
+            setPreloadedImages(prev => new Set([...prev, category.id]));
+            resolve();
+          };
+          img.onerror = resolve; // Continue mesmo se falhar
+          img.src = category.image;
+        });
+      });
+      await Promise.all(promises);
+    };
+    preloadImages();
+  }, []);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -313,25 +335,47 @@ function Categories() {
             transition: isDragging ? 'none' : (isTransitioning ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none')
           }}
         >
-          {infiniteCategories.map((category, index) => (
-            <div 
-              key={index === categoriesData.length ? `${category.id}-clone` : category.id}
-              className="swiper-slide"
-            >
-              <a href="#" className="category-card">
-                <img 
-                  src={category.image} 
-                  alt={category.name} 
-                  className="category-card-image"
-                  loading="lazy"
-                  draggable="false"
-                />
-                <div className="category-card-overlay">
-                  <span className="category-card-name">{category.name}</span>
-                </div>
-              </a>
-            </div>
-          ))}
+          {infiniteCategories.map((category, index) => {
+            // Determinar se a imagem deve ser carregada imediatamente
+            const isVisible = Math.abs(index - currentIndex) <= 2; // Carrega atual +/- 2 posições
+            const shouldPreload = index <= 2 || preloadedImages.has(category.id); // Primeiras 3 ou já precarregadas
+            const shouldLoad = isVisible || shouldPreload;
+            
+            return (
+              <div 
+                key={index === categoriesData.length ? `${category.id}-clone` : category.id}
+                className="swiper-slide"
+              >
+                <a href="#" className="category-card">
+                  {shouldLoad ? (
+                    <img 
+                      src={category.image} 
+                      alt={category.name} 
+                      className="category-card-image"
+                      loading={index <= 2 ? "eager" : "lazy"}
+                      draggable="false"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div 
+                      className="category-card-image category-placeholder"
+                      style={{
+                        background: 'linear-gradient(45deg, #1a1a1a, #2a2a2a)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <i className="fas fa-image" style={{color: '#666', fontSize: '2rem'}}></i>
+                    </div>
+                  )}
+                  <div className="category-card-overlay">
+                    <span className="category-card-name">{category.name}</span>
+                  </div>
+                </a>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -349,7 +393,7 @@ function ProductCard({ product, animationClass }) {
         <div className="product-media">
           {discount && <span className="badge badge-sale">-{discount}%</span>}
           {!discount && <span className="badge badge-new">NEW</span>}
-          <img src={product.image} alt={product.name} className="product-media-img" loading="lazy" />
+          <img src={product.image} alt={product.name} className="product-media-img" loading="lazy" decoding="async" />
           <div className="floating-actions">
             <button
               type="button"
@@ -459,7 +503,7 @@ function Carousel() {
           <div className="carousel-inner" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
             {carouselData.map(item => (
               <div key={item.id} className="carousel-item">
-                <img src={item.image} alt="Promoção" className="carousel-img" />
+                <img src={item.image} alt="Promoção" className="carousel-img" loading="lazy" decoding="async" />
                 <div className="carousel-content">
                   <h3 className="carousel-title">{item.title}</h3>
                   <p className="carousel-description">{item.description}</p>
