@@ -2072,12 +2072,13 @@ footer {
     }
 
     .categories-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
 
     .category-card {
-        height: 160px;
+        height: 200px;
+        max-width: 100%;
     }
 
     .category-name {
