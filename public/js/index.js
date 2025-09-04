@@ -80,8 +80,7 @@ function Hero() {
           playsInline
           poster="https://images.unsplash.com/photo-1556906781-2f0520405b71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
         >
-          <source src="https://cdn.coverr.co/videos/coverr-a-man-walking-in-a-subway-station-2747/1080p.mp4" type="video/mp4" />
-          <source src="https://cdn.coverr.co/videos/coverr-a-man-walking-in-a-subway-station-2747/1080p.webm" type="video/webm" />
+          <source src="./video/intro1.mp4" type="video/mp4" />
           Seu navegador não suporta vídeo em HTML5.
         </video>
         <div className="hero-overlay" aria-hidden="true"></div>
@@ -157,41 +156,6 @@ function Products() {
   const [filter, setFilter] = React.useState('todos');
   const { addToCart } = React.useContext(CartContext);
   const filteredProducts = filter === 'todos' ? productsData : productsData.filter(p => p.category === filter);
-  // Forçar layout horizontal independente do CSS (fallback robusto)
-  React.useEffect(() => {
-    const applyHorizontal = () => {
-      const container = document.querySelector('.products-row');
-      if (!container) return;
-      container.style.display = 'flex';
-      container.style.flexWrap = 'nowrap';
-      container.style.overflowX = 'auto';
-      container.style.overflowY = 'hidden';
-      container.style.scrollSnapType = 'x mandatory';
-      container.style.gap = '28px';
-      container.style.webkitOverflowScrolling = 'touch';
-      const width = window.innerWidth;
-      let cardWidth = 320;
-      if (width <= 1400) cardWidth = 300;
-      if (width <= 1100) cardWidth = 280;
-      if (width <= 900) cardWidth = 260;
-      if (width <= 760) cardWidth = 240;
-      if (width <= 600) cardWidth = 230;
-      if (width <= 480) cardWidth = 220;
-      if (width <= 420) cardWidth = 210;
-      if (width <= 380) cardWidth = 200;
-      if (width <= 340) cardWidth = 185;
-      Array.from(container.children).forEach(ch => {
-        if (ch.classList && ch.classList.contains('product-card')) {
-          ch.style.flex = `0 0 ${cardWidth}px`;
-          ch.style.maxWidth = cardWidth + 'px';
-          ch.style.scrollSnapAlign = 'start';
-        }
-      });
-    };
-    applyHorizontal();
-    window.addEventListener('resize', applyHorizontal);
-    return () => window.removeEventListener('resize', applyHorizontal);
-  }, [filter]);
   return (
     <section className="section" style={{ backgroundColor: '#0a0a0a' }}>
       <div className="container">
@@ -211,7 +175,7 @@ function Products() {
             ))}
           </div>
         </div>
-  <div className="products-row horizontal-scroll" style={{display:'flex',flexWrap:'nowrap',overflowX:'auto',overflowY:'hidden',gap:'28px',WebkitOverflowScrolling:'touch'}}>
+        <div className="products-grid">
           {filteredProducts.map((product, index) => (
             <ProductCard key={product.id} product={product} animationClass={`animate-slide-left delay-${index % 4}`} onAdd={addToCart} />
           ))}
