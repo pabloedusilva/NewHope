@@ -1247,9 +1247,31 @@ header.scrolled {
 
 /* Newsletter */
 .newsletter {
-    background-color: var(--accent);
+    background-image: url('../img/newsletter/newsletter1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     padding: 80px 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.newsletter .container {
+    position: relative;
+    z-index: 2;
 }
 
 .newsletter-title {
@@ -1792,6 +1814,8 @@ footer {
 
     .newsletter {
         padding: 60px 0;
+        background-attachment: scroll;
+        background-position: center center;
     }
 
     .newsletter-title {
@@ -2216,6 +2240,8 @@ footer {
 
     .newsletter {
         padding: 40px 0;
+        background-attachment: scroll;
+        background-position: center center;
     }
 
     .newsletter-title {
