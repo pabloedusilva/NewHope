@@ -491,6 +491,16 @@ header.scrolled {
     pointer-events: none;
 }
 
+.category-placeholder {
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a) !important;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.6; }
+}
+
 /* Hover apenas em dispositivos maiores que suportam hover */
 @media (hover: hover) and (pointer: fine) {
     .category-card:hover {
