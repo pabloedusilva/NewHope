@@ -1,6 +1,4 @@
 // Arquivo único consolidado: dados, componentes e app
-// Contexto do carrinho
-const CartContext = React.createContext();
 
 // Dados dos produtos
 const productsData = [
@@ -34,7 +32,6 @@ const carouselData = [
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
-  const { cartCount } = React.useContext(CartContext);
   React.useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 100);
     window.addEventListener('scroll', handleScroll);
@@ -57,10 +54,6 @@ function Header() {
           <li className="nav-item"><a href="#" className="nav-link">Sobre</a></li>
         </ul>
         <div className="header-icons">
-          <div className="icon-item cart-icon-wrapper" id="main-cart-icon">
-            <i className="fas fa-shopping-cart"></i>
-            {cartCount > 0 && <span className="cart-badge" key={cartCount}>{cartCount}</span>}
-          </div>
           <div className="icon-item"><i className="fas fa-user"></i></div>
         </div>
       </div>
@@ -115,16 +108,9 @@ function Categories() {
   );
 }
 
-function ProductCard({ product, animationClass, onAdd }) {
+function ProductCard({ product, animationClass }) {
   const [liked, setLiked] = React.useState(false);
-  const [added, setAdded] = React.useState(false);
   const discount = product.oldPrice ? Math.round((1 - (product.price / product.oldPrice)) * 100) : null;
-
-  function handleAdd(e) {
-    onAdd(e, product);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2500); // volta ao normal depois
-  }
 
   return (
     <div className={`product-card product-card-v2 ${animationClass}`}>
@@ -158,15 +144,10 @@ function ProductCard({ product, animationClass, onAdd }) {
             {product.oldPrice && <span className="price-old">R$ {product.oldPrice.toFixed(2)}</span>}
           </div>
           <div className="cart-row">
-            <button className={`btn-cart ${added ? 'added' : ''}`} onClick={handleAdd} data-product-id={product.id} disabled={added}>
-              <span className="btn-cart-bg" aria-hidden="true"></span>
-              <span className="btn-cart-content btn-cart-add">
-                <i className="fas fa-shopping-bag"></i>
-                <span>Adicionar</span>
-              </span>
-              <span className="btn-cart-content btn-cart-added" aria-live="polite">
-                <i className="fas fa-check"></i>
-                <span>Adicionado</span>
+            <button className="btn-view-more" onClick={() => console.log('Ver mais:', product.name)}>
+              <span className="btn-view-more-content">
+                <i className="fas fa-eye"></i>
+                <span>Ver mais</span>
               </span>
             </button>
           </div>
@@ -178,7 +159,6 @@ function ProductCard({ product, animationClass, onAdd }) {
 
 function Products() {
   const [filter, setFilter] = React.useState('todos');
-  const { addToCart } = React.useContext(CartContext);
   const filteredProducts = filter === 'todos' ? productsData : productsData.filter(p => p.category === filter);
   return (
     <section className="section" style={{ backgroundColor: '#0a0a0a' }}>
@@ -201,7 +181,7 @@ function Products() {
         </div>
         <div className="products-grid">
           {filteredProducts.map((product, index) => (
-            <ProductCard key={product.id} product={product} animationClass={`animate-slide-left delay-${index % 4}`} onAdd={addToCart} />
+            <ProductCard key={product.id} product={product} animationClass={`animate-slide-left delay-${index % 4}`} />
           ))}
         </div>
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
@@ -344,22 +324,6 @@ function Footer() {
   );
 }
 
-function CartProvider({ children }) {
-  const [cartCount, setCartCount] = React.useState(0);
-  const addToCart = (e, product) => {
-    const button = e.currentTarget;
-    if (button.classList.contains('adding') || button.classList.contains('added')) return;
-    button.classList.add('adding');
-    launchAddToCartAnimation(button, product, () => {
-      button.classList.remove('adding');
-      button.classList.add('added');
-      setTimeout(() => button.classList.remove('added'), 1700);
-    });
-    setCartCount(prev => prev + 1);
-  };
-  return <CartContext.Provider value={{ cartCount, addToCart }}>{children}</CartContext.Provider>;
-}
-
 function App() {
   React.useEffect(() => {
     const animateOnScroll = () => {
@@ -378,37 +342,17 @@ function App() {
     return () => window.removeEventListener('scroll', animateOnScroll);
   }, []);
   return (
-    <CartProvider>
-      <div className="App">
-        <Header />
-        <Hero />
-        <Categories />
-        <Products />
-        <Instagram />
-        <Carousel />
-        <Newsletter />
-        <Footer />
-      </div>
-    </CartProvider>
+    <div className="App">
+      <Header />
+      <Hero />
+      <Categories />
+      <Products />
+      <Instagram />
+      <Carousel />
+      <Newsletter />
+      <Footer />
+    </div>
   );
-}
-
-function launchAddToCartAnimation(button, product, onComplete) {
-  try {
-    const cartIcon = document.getElementById('main-cart-icon');
-    if (!cartIcon) { onComplete && onComplete(); return; }
-    cartIcon.classList.remove('cart-bump');
-    void cartIcon.offsetWidth; // reflow
-    cartIcon.classList.add('cart-bump');
-    const ripple = document.createElement('span');
-    ripple.className = 'cart-ripple';
-    cartIcon.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 600);
-    setTimeout(() => { onComplete && onComplete(); }, 360);
-  } catch (e) {
-    console.error('Animation error', e);
-    onComplete && onComplete();
-  }
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
