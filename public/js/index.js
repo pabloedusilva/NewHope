@@ -116,36 +116,48 @@ function Categories() {
 }
 
 function ProductCard({ product, animationClass, onAdd }) {
+  const [liked, setLiked] = React.useState(false);
+  const discount = product.oldPrice ? Math.round((1 - (product.price / product.oldPrice)) * 100) : null;
   return (
-    <div className={`product-card ${animationClass}`}>
-      <div className="product-img-container">
-        <img src={product.image} alt={product.name} className="product-img" />
-        <div className="product-overlay">
-          <div className="product-actions">
-            <div className="product-action"><i className="fas fa-heart"></i></div>
-            <div className="product-action"><i className="fas fa-eye"></i></div>
+    <div className={`product-card product-card-v2 ${animationClass}`}>
+      <div className="product-card-glow" aria-hidden="true"></div>
+      <div className="product-card-inner">
+        <div className="product-media">
+          {discount && <span className="badge badge-sale">-{discount}%</span>}
+          {!discount && <span className="badge badge-new">NEW</span>}
+          <img src={product.image} alt={product.name} className="product-media-img" loading="lazy" />
+          <div className="floating-actions">
+            <button
+              type="button"
+              className={`icon-btn wishlist ${liked ? 'active' : ''}`}
+              aria-pressed={liked}
+              onClick={() => setLiked(v => !v)}
+            >
+              <i className={liked ? 'fas fa-heart' : 'far fa-heart'}></i>
+            </button>
+            <button type="button" className="icon-btn quickview" aria-label="Visualizar">
+              <i className="fas fa-eye"></i>
+            </button>
           </div>
+          <div className="media-gradient" aria-hidden="true"></div>
         </div>
-      </div>
-      <div className="product-info">
-        <div className="product-content-wrapper">
-          <div className="product-details">
-            <h3 className="product-name">{product.name}</h3>
-            <div className="product-price">
-              R$ {product.price.toFixed(2)}
-              {product.oldPrice && <span className="product-old-price">R$ {product.oldPrice.toFixed(2)}</span>}
-            </div>
+        <div className="product-meta">
+          <div className="meta-top">
+            <h3 className="product-title" title={product.name}>{product.name}</h3>
           </div>
-          <button className="add-to-cart-btn" onClick={(e) => onAdd(e, product)} data-product-id={product.id}>
-            <span className="label-default">
-              <i className="fas fa-shopping-cart"></i>
-              Adicionar ao Carrinho
-            </span>
-            <span className="label-added">
-              <span className="status-icon"><i className="fas fa-check"></i></span>
-              Adicionado!
-            </span>
-          </button>
+          <div className="price-row">
+            <span className="price-current">R$ {product.price.toFixed(2)}</span>
+            {product.oldPrice && <span className="price-old">R$ {product.oldPrice.toFixed(2)}</span>}
+          </div>
+          <div className="cart-row">
+            <button className="btn-cart" onClick={(e) => onAdd(e, product)} data-product-id={product.id}>
+              <span className="btn-cart-bg" aria-hidden="true"></span>
+              <span className="btn-cart-content">
+                <i className="fas fa-shopping-bag"></i>
+                <span>Adicionar</span>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
