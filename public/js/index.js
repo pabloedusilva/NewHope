@@ -12,13 +12,16 @@ const productsData = [
   { id: 8, name: 'Short Cargo', price: 139.90, image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', category: 'shorts' }
 ];
 
-// Dados das categorias
+// Dados das categorias para o carousel
 const categoriesData = [
-  { id: 1, name: 'Camisetas', image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-  { id: 2, name: 'Calças', image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-  { id: 3, name: 'Acessórios', image: 'https://images.unsplash.com/photo-1556306535-0f09a537f0a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-  { id: 4, name: 'Tênis', image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-  { id: 5, name: 'Camisas de Time', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }
+  { id: 1, name: 'JEANS', image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+  { id: 2, name: 'SHORTS', image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+  { id: 3, name: 'CAMISETAS', image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+  { id: 4, name: 'TÊNIS', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+  { id: 5, name: 'MOLETOM', image: 'https://images.unsplash.com/photo-1588117305388-c2631a279f82?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+  { id: 6, name: 'JAQUETAS', image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+  { id: 7, name: 'BONÉS', image: 'https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+  { id: 8, name: 'REGATAS', image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }
 ];
 
 // Dados do carrossel
@@ -121,17 +124,212 @@ function Benefits() {
 }
 
 function Categories() {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isTransitioning, setIsTransitioning] = React.useState(false);
+  const [isDragging, setIsDragging] = React.useState(false);
+  const [startX, setStartX] = React.useState(0);
+  const [currentX, setCurrentX] = React.useState(0);
+  const [dragOffset, setDragOffset] = React.useState(0);
+  const [dragStartTime, setDragStartTime] = React.useState(0);
+  const [hasMoved, setHasMoved] = React.useState(false);
+
+  // Criar loop infinito: categorias originais + primeira categoria clonada no final
+  const infiniteCategories = [...categoriesData, categoriesData[0]];
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isDragging && !isTransitioning) {
+        nextSlide();
+      }
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isDragging, isTransitioning, currentIndex]);
+
+  const nextSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    
+    const newIndex = currentIndex + 1;
+    setCurrentIndex(newIndex);
+    
+    // Se chegou na última (que é clone da primeira), reset instantâneo para a primeira real
+    if (newIndex === categoriesData.length) {
+      setTimeout(() => {
+        setCurrentIndex(0);
+        setIsTransitioning(false);
+      }, 600); // Após a transição completa
+    } else {
+      setTimeout(() => setIsTransitioning(false), 600);
+    }
+  };
+
+  const prevSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    
+    if (currentIndex === 0) {
+      // Se está na primeira, vai instantaneamente para a última (clone) e depois mostra a penúltima
+      setCurrentIndex(categoriesData.length);
+      setTimeout(() => {
+        setCurrentIndex(categoriesData.length - 1);
+        setIsTransitioning(false);
+      }, 50);
+    } else {
+      setCurrentIndex(currentIndex - 1);
+      setTimeout(() => setIsTransitioning(false), 600);
+    }
+  };
+
+  // Touch/Mouse events para swipe
+  const handleStart = (clientX) => {
+    setStartX(clientX);
+    setCurrentX(clientX);
+    setDragStartTime(Date.now());
+    setHasMoved(false);
+    setDragOffset(0);
+    
+    // Em dispositivos maiores, só inicia drag após um pequeno delay e movimento
+    if (window.innerWidth > 768) {
+      setTimeout(() => {
+        if (Math.abs(currentX - startX) > 5) { // Só inicia se moveu pelo menos 5px
+          setIsDragging(true);
+        }
+      }, 100); // Delay de 100ms
+    } else {
+      setIsDragging(true); // Em mobile, inicia imediatamente
+    }
+  };
+
+  const handleMove = (clientX) => {
+    setCurrentX(clientX);
+    const moveDistance = Math.abs(clientX - startX);
+    
+    // Em dispositivos maiores, só considera movimento após threshold
+    if (window.innerWidth > 768) {
+      if (moveDistance > 10 && Date.now() - dragStartTime > 100) {
+        setIsDragging(true);
+        setHasMoved(true);
+      }
+    } else {
+      setHasMoved(true);
+    }
+    
+    if (isDragging) {
+      setDragOffset(clientX - startX);
+    }
+  };
+
+  const handleEnd = () => {
+    if (!isDragging || !hasMoved) {
+      setIsDragging(false);
+      setDragOffset(0);
+      setHasMoved(false);
+      return;
+    }
+    
+    setIsDragging(false);
+    
+    // Threshold maior para dispositivos maiores
+    const threshold = window.innerWidth > 768 ? 80 : 50;
+    
+    if (Math.abs(dragOffset) > threshold) {
+      if (dragOffset > 0) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
+    }
+    
+    setDragOffset(0);
+    setStartX(0);
+    setCurrentX(0);
+    setHasMoved(false);
+  };
+
+  // Mouse events
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    handleStart(e.clientX);
+  };
+  
+  const handleMouseMove = (e) => {
+    if (startX !== 0) { // Só processa se o mouse foi pressionado
+      handleMove(e.clientX);
+    }
+  };
+  
+  const handleMouseUp = () => {
+    if (startX !== 0) {
+      handleEnd();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      handleEnd();
+    }
+  };
+
+  // Touch events (mais responsivos para mobile)
+  const handleTouchStart = (e) => {
+    handleStart(e.touches[0].clientX);
+  };
+  
+  const handleTouchMove = (e) => {
+    if (startX !== 0) {
+      e.preventDefault(); // Previne scroll no mobile durante drag
+      handleMove(e.touches[0].clientX);
+    }
+  };
+  
+  const handleTouchEnd = () => {
+    handleEnd();
+  };
+
+  const getTransformStyle = () => {
+    const slideWidth = window.innerWidth <= 768 ? 100 : (window.innerWidth <= 1024 ? 50 : 33.333);
+    const baseTransform = -(currentIndex * slideWidth);
+    const dragTransform = isDragging && hasMoved ? (dragOffset / window.innerWidth) * slideWidth : 0;
+    return `translateX(${baseTransform + dragTransform}%)`;
+  };
+
   return (
-    <section className="section categories-section">
-      <div className="container">
-        <h2 className="section-title">Categorias</h2>
-        <div className="categories-grid">
-          {categoriesData.map((category, index) => (
-            <div key={category.id} className={`category-card animate-fade-in delay-${index}`}>
-              <img src={category.image} alt={category.name} className="category-img" />
-              <div className="category-overlay">
-                <h3 className="category-name">{category.name}</h3>
-              </div>
+    <section className="category-swiper-section">
+      <div 
+        className="category-swiper-container"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div 
+          className="swiper-wrapper"
+          style={{
+            transform: getTransformStyle(),
+            transition: isDragging ? 'none' : (isTransitioning ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none')
+          }}
+        >
+          {infiniteCategories.map((category, index) => (
+            <div 
+              key={index === categoriesData.length ? `${category.id}-clone` : category.id}
+              className="swiper-slide"
+            >
+              <a href="#" className="category-card">
+                <img 
+                  src={category.image} 
+                  alt={category.name} 
+                  className="category-card-image"
+                  loading="lazy"
+                  draggable="false"
+                />
+                <div className="category-card-overlay">
+                  <span className="category-card-name">{category.name}</span>
+                </div>
+              </a>
             </div>
           ))}
         </div>
