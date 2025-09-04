@@ -44,7 +44,7 @@ function Header() {
     <header className={isScrolled ? 'scrolled' : ''}>
       <div className="container header-container">
         <a href="#" className="logo">
-          <img src="https://via.placeholder.com/120x40/ffffff/000000?text=LOGO" alt="Logo" className="logo-img" />
+          <img src="./img/logo.png" alt="Logo Urban Street" className="logo-img" />
         </a>
         <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <i className={isMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>

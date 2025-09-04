@@ -118,10 +118,13 @@ header.scrolled {
 }
 
 .logo-img {
-    height: 40px;
+    height: 70px; /* aumentado de 40px */
     width: auto;
-    max-width: 120px;
+    max-width: 200px; /* aumentado de 120px */
+    transition: transform .25s ease;
 }
+
+.logo-img:hover { transform: scale(1.05); }
 
 .logo span {
     color: var(--accent);
@@ -1219,8 +1222,8 @@ footer {
     }
 
     .logo-img {
-        height: 35px;
-        max-width: 100px;
+        height: 60px; /* antes 35px */
+        max-width: 170px; /* antes 100px */
     }
 
     .menu-toggle {
@@ -1528,8 +1531,8 @@ footer {
     }
 
     .logo-img {
-        height: 30px;
-        max-width: 80px;
+        height: 55px; /* antes 30px */
+        max-width: 150px; /* antes 80px */
     }
 
     .hero {
@@ -1673,8 +1676,8 @@ footer {
     }
 
     .logo-img {
-        height: 28px;
-        max-width: 70px;
+        height: 50px; /* antes 28px */
+        max-width: 140px; /* antes 70px */
     }
 
     .menu-toggle {
