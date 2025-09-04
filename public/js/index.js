@@ -91,6 +91,35 @@ function Hero() {
   );
 }
 
+function Benefits() {
+  return (
+    <section className="benefits-section">
+      <div className="container">
+        <div className="benefits-bar">
+          <div className="benefit-item">
+            <div className="benefit-icon">
+              <i className="fas fa-percentage"></i>
+            </div>
+            <div className="benefit-text">
+              <span className="benefit-code">PRIMEIRACOMPRA</span>
+              <span className="benefit-desc">cupom 10% OFF</span>
+            </div>
+          </div>
+          <div className="benefit-item">
+            <div className="benefit-icon">
+              <i className="far fa-credit-card"></i>
+            </div>
+            <div className="benefit-text">
+              <span className="benefit-code">Parcele sua compra</span>
+              <span className="benefit-desc">em até 3x juros</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Categories() {
   return (
     <section className="section">
@@ -345,6 +374,7 @@ function App() {
     <div className="App">
       <Header />
       <Hero />
+      <Benefits />
       <Categories />
       <Products />
       <Instagram />

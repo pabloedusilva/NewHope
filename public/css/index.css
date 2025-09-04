@@ -284,6 +284,137 @@ header.scrolled {
     opacity: 0.9;
 }
 
+/* Benefits Section */
+.benefits-section {
+    padding: 20px 0;
+    background: #2a2a2a;
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #444;
+}
+
+.benefits-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.benefits-bar::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1px;
+    height: 60px;
+    background: #ffffff;
+    opacity: 0.6;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.benefit-item:first-child {
+    justify-content: flex-end;
+}
+
+.benefit-item:last-child {
+    justify-content: flex-start;
+}
+
+.benefit-icon {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.benefit-icon i {
+    font-size: 18px;
+    color: #000000;
+}
+
+.benefit-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.benefit-code {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.benefit-desc {
+    font-size: 12px;
+    color: #cccccc;
+    font-weight: 400;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .benefits-bar {
+        gap: 30px;
+    }
+    
+    .benefits-bar::before {
+        height: 50px;
+    }
+    
+    .benefit-code {
+        font-size: 13px;
+    }
+    
+    .benefit-desc {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .benefits-section {
+        padding: 15px 0;
+    }
+    
+    .benefits-bar {
+        gap: 20px;
+    }
+    
+    .benefits-bar::before {
+        height: 45px;
+    }
+    
+    .benefit-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .benefit-icon i {
+        font-size: 16px;
+    }
+    
+    .benefit-code {
+        font-size: 12px;
+    }
+    
+    .benefit-desc {
+        font-size: 10px;
+    }
+}
+
 /* Categories */
 .section {
     padding: 100px 0;
