@@ -382,6 +382,53 @@ function Categories() {
   );
 }
 
+function FreteGratisBanner() {
+  return (
+    <section className="frete-gratis-banner">
+      <div className="frete-gratis-content">
+        <div className="frete-gratis-track">
+          <div className="frete-gratis-item">
+            <i className="fas fa-shipping-fast"></i>
+            <span>FRETE GRÁTIS ACIMA DE R$ 200</span>
+          </div>
+          <div className="frete-gratis-item">
+            <i className="fas fa-medal"></i>
+            <span>ENTREGA GARANTIDA</span>
+          </div>
+          <div className="frete-gratis-item">
+            <i className="fas fa-truck"></i>
+            <span>ENVIO RÁPIDO E SEGURO</span>
+          </div>
+          <div className="frete-gratis-item">
+            <i className="fas fa-shipping-fast"></i>
+            <span>FRETE GRÁTIS ACIMA DE R$ 200</span>
+          </div>
+          <div className="frete-gratis-item">
+            <i className="fas fa-medal"></i>
+            <span>ENTREGA GARANTIDA</span>
+          </div>
+          <div className="frete-gratis-item">
+            <i className="fas fa-truck"></i>
+            <span>ENVIO RÁPIDO E SEGURO</span>
+          </div>
+          <div className="frete-gratis-item">
+            <i className="fas fa-shipping-fast"></i>
+            <span>FRETE GRÁTIS ACIMA DE R$ 200</span>
+          </div>
+          <div className="frete-gratis-item">
+            <i className="fas fa-medal"></i>
+            <span>ENTREGA GARANTIDA</span>
+          </div>
+          <div className="frete-gratis-item">
+            <i className="fas fa-truck"></i>
+            <span>ENVIO RÁPIDO E SEGURO</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProductCard({ product, animationClass }) {
   const [liked, setLiked] = React.useState(false);
   const discount = product.oldPrice ? Math.round((1 - (product.price / product.oldPrice)) * 100) : null;
@@ -634,6 +681,7 @@ function App() {
       <Hero />
       <Benefits />
       <Categories />
+      <FreteGratisBanner />
       <Products />
       <Instagram />
       <Carousel />
