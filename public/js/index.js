@@ -87,7 +87,7 @@ function Hero() {
       </div>
       <div className="container hero-content animate-slide-up">
         <p className="hero-subtitle">Nova Coleção 2023</p>
-        <h1 className="hero-title">ESTILO URBANO <span>QUE IMPACTA</span></h1>
+        <h1 className="hero-title">ESTILO <span>QUE IMPACTA</span></h1>
         <p className="hero-description">Descubra as peças mais exclusivas da cultura streetwear que combinam conforto, estilo e atitude.</p>
         <a href="#" className="btn">Comprar Agora</a>
       </div>
