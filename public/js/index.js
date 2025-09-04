@@ -353,6 +353,22 @@ function Footer() {
   );
 }
 
+function WhatsAppButton() {
+  const whatsappNumber = "5511999999999"; // Substitua pelo número real da loja
+  const message = "Olá! Gostaria de saber mais sobre os produtos da NewHope.";
+  
+  const handleWhatsAppClick = () => {
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
+
+  return (
+    <div className="whatsapp-button" onClick={handleWhatsAppClick}>
+      <i className="fab fa-whatsapp"></i>
+    </div>
+  );
+}
+
 function App() {
   React.useEffect(() => {
     const animateOnScroll = () => {
@@ -381,6 +397,7 @@ function App() {
       <Carousel />
       <Newsletter />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
