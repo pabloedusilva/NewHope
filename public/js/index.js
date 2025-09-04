@@ -55,6 +55,9 @@ function Header() {
         </ul>
         <div className="header-icons">
           <div className="icon-item"><i className="fas fa-user"></i></div>
+          <div className="icon-item cart-icon">
+            <i className="fas fa-shopping-bag"></i>
+          </div>
         </div>
       </div>
     </header>
@@ -128,9 +131,6 @@ function ProductCard({ product, animationClass }) {
               onClick={() => setLiked(v => !v)}
             >
               <i className={liked ? 'fas fa-heart' : 'far fa-heart'}></i>
-            </button>
-            <button type="button" className="icon-btn quickview" aria-label="Visualizar">
-              <i className="fas fa-eye"></i>
             </button>
           </div>
           <div className="media-gradient" aria-hidden="true"></div>
