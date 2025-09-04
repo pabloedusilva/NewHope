@@ -749,14 +749,17 @@ header.scrolled {
 
 @media (max-width: 420px) {
     .filter-tabs {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
+        justify-content: flex-start;
+        gap: 4px;
+        padding: 4px;
     }
 
     .filter-tab {
-        flex: 1;
-        min-width: calc(50% - 4px);
+        padding: 6px 12px;
+        font-size: 10px;
+        min-width: auto;
+        flex-shrink: 0;
+        white-space: nowrap;
         margin-right: 0;
     }
 }
