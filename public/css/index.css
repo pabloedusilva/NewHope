@@ -58,7 +58,7 @@ img {
 .btn {
     display: inline-block;
     padding: 12px 28px;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.08);
     color: var(--secondary);
     border: 2px solid var(--secondary);
     border-radius: 30px;
@@ -68,7 +68,8 @@ img {
     cursor: pointer;
     transition: var(--transition);
     font-size: 14px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(40px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover {
