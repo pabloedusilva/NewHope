@@ -44,7 +44,7 @@ function Header() {
     <header className={isScrolled ? 'scrolled' : ''}>
       <div className="container header-container">
         <a href="#" className="logo">
-          <img src="./img/logo.png" alt="Logo Urban Street" className="logo-img" />
+          <img src="./img/logo.png" alt="Logo NewHope" className="logo-img" />
         </a>
         <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <i className={isMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
@@ -88,7 +88,7 @@ function Hero() {
       <div className="container hero-content animate-slide-up">
         <p className="hero-subtitle">Nova Coleção 2023</p>
         <h1 className="hero-title">ESTILO <span>QUE IMPACTA</span></h1>
-        <p className="hero-description">Descubra as peças mais exclusivas da cultura streetwear que combinam conforto, estilo e atitude.</p>
+        <p className="hero-description">onde fé, estilo e esperança se encontram!</p>
         <a href="#" className="btn">Comprar Agora</a>
       </div>
     </section>
@@ -248,7 +248,7 @@ function Footer() {
             <a href="#" className="logo">
               <img src="https://via.placeholder.com/120x40/ffffff/000000?text=LOGO" alt="Logo" className="logo-img" />
             </a>
-            <p className="footer-description">A mais nova loja de streetwear do Brasil, trazendo as melhores marcas e tendências para você se expressar através da moda.</p>
+            <p className="footer-description">A NewHope é uma loja de moda urbana que traz as melhores marcas e tendências para você se expressar através do estilo.</p>
             <div className="social-links">
               <a href="#" className="social-link"><i className="fab fa-instagram"></i></a>
               <a href="#" className="social-link"><i className="fab fa-twitter"></i></a>
@@ -281,13 +281,13 @@ function Footer() {
             <ul className="contact-info">
               <li><i className="fas fa-map-marker-alt"></i> Rua das Tendências, 123 - São Paulo, SP</li>
               <li><i className="fas fa-phone"></i> (11) 9999-9999</li>
-              <li><i className="fas fa-envelope"></i> contato@urbanstreet.com.br</li>
+              <li><i className="fas fa-envelope"></i> atendimento.newhopestreet@gmail.com</li>
               <li><i className="fas fa-clock"></i> Seg a Sex: 9h às 18h | Sáb: 10h às 16h</li>
             </ul>
           </div>
         </div>
         <div className="copyright">
-          <p>&copy; 2023 URBAN STREET - Todos os direitos reservados</p>
+          <p>&copy; 2023 NEWHOPE - Todos os direitos reservados</p>
         </div>
       </div>
     </footer>
