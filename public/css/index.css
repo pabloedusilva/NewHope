@@ -420,6 +420,32 @@ header.scrolled {
     padding: 100px 0;
 }
 
+.categories-section {
+    background-image: url('../img/newsletter/newsletter1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+.categories-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.categories-section .container {
+    position: relative;
+    z-index: 2;
+}
+
 .section-title {
     font-family: var(--font-heading);
     font-size: 36px;
@@ -1818,6 +1844,11 @@ footer {
         background-position: center center;
     }
 
+    .categories-section {
+        background-attachment: scroll;
+        background-position: center center;
+    }
+
     .newsletter-title {
         font-size: 26px;
     }
@@ -2240,6 +2271,11 @@ footer {
 
     .newsletter {
         padding: 40px 0;
+        background-attachment: scroll;
+        background-position: center center;
+    }
+
+    .categories-section {
         background-attachment: scroll;
         background-position: center center;
     }

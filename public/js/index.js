@@ -122,7 +122,7 @@ function Benefits() {
 
 function Categories() {
   return (
-    <section className="section">
+    <section className="section categories-section">
       <div className="container">
         <h2 className="section-title">Categorias</h2>
         <div className="categories-grid">
