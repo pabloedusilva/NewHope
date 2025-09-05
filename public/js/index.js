@@ -35,13 +35,29 @@ const carouselData = [
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [isHero, setIsHero] = React.useState(true);
   React.useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 100);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const headerEl = document.querySelector('header');
+    const heroSection = document.querySelector('.hero');
+    const onScroll = () => {
+      if (!heroSection) {
+        setIsScrolled(window.scrollY > 100);
+        setIsHero(false);
+        return;
+      }
+      const rect = heroSection.getBoundingClientRect();
+      const threshold = headerEl ? headerEl.offsetHeight : 0;
+      const inHero = rect.bottom - threshold > 0; // ainda dentro da hero enquanto o fundo da hero não passou o topo do header
+      setIsHero(inHero);
+      setIsScrolled(!inHero);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
+  const headerClasses = `${isScrolled ? 'scrolled' : isHero ? 'hero-navbar' : ''} ${isMenuOpen ? 'menu-open' : ''}`.trim();
   return (
-    <header className={isScrolled ? 'scrolled' : ''}>
+    <header className={headerClasses}>
       <div className="container header-container">
         <a href="#" className="logo">
           <img src="./img/Logos/logo.png" alt="Logo NewHope" className="logo-img" />
@@ -78,7 +94,7 @@ function Hero() {
           loop
           playsInline
           preload="metadata"
-          poster="https://images.unsplash.com/photo-1556906781-2f0520405b71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=60"
+          poster="./img/newsletter/newsletter1.png"
         >
           <source src="./video/intro1.mp4" type="video/mp4" />
           Seu navegador não suporta vídeo em HTML5.
@@ -134,6 +150,7 @@ function Categories() {
   const [dragStartTime, setDragStartTime] = React.useState(0);
   const [hasMoved, setHasMoved] = React.useState(false);
   const [preloadedImages, setPreloadedImages] = React.useState(new Set());
+  const containerRef = React.useRef(null);
 
   // Criar loop infinito: categorias originais + primeira categoria clonada no final
   const infiniteCategories = [...categoriesData, categoriesData[0]];
@@ -293,21 +310,147 @@ function Categories() {
     }
   };
 
-  // Touch events (mais responsivos para mobile)
-  const handleTouchStart = (e) => {
-    handleStart(e.touches[0].clientX);
-  };
-  
-  const handleTouchMove = (e) => {
-    if (startX !== 0) {
-      e.preventDefault(); // Previne scroll no mobile durante drag
-      handleMove(e.touches[0].clientX);
+  // Configurar event listeners não-passivos para touch events
+  React.useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      // Criar versões estáveis das funções de handler
+      const touchStartHandler = (e) => {
+        const touch = e.touches[0];
+        setStartX(touch.clientX);
+        setCurrentX(touch.clientX);
+        setDragStartTime(Date.now());
+        setHasMoved(false);
+        setDragOffset(0);
+        
+        // Em dispositivos maiores, só inicia drag após um pequeno delay e movimento
+        if (window.innerWidth > 768) {
+          setTimeout(() => {
+            if (Math.abs(touch.clientX - touch.clientX) > 5) {
+              setIsDragging(true);
+            }
+          }, 100);
+        } else {
+          setIsDragging(true);
+        }
+      };
+
+      const touchMoveHandler = (e) => {
+        e.preventDefault(); // Previne scroll no mobile durante drag
+        
+        const touch = e.touches[0];
+        setCurrentX(touch.clientX);
+        
+        setStartX(prevStartX => {
+          if (prevStartX !== 0) {
+            const moveDistance = Math.abs(touch.clientX - prevStartX);
+            
+            // Em dispositivos maiores, só considera movimento após threshold
+            if (window.innerWidth > 768) {
+              if (moveDistance > 10 && Date.now() - dragStartTime > 100) {
+                setIsDragging(true);
+                setHasMoved(true);
+              }
+            } else {
+              setHasMoved(true);
+            }
+            
+            setIsDragging(prevIsDragging => {
+              if (prevIsDragging) {
+                setDragOffset(touch.clientX - prevStartX);
+              }
+              return prevIsDragging;
+            });
+          }
+          return prevStartX;
+        });
+      };
+
+      const touchEndHandler = () => {
+        setIsDragging(prevIsDragging => {
+          setHasMoved(prevHasMoved => {
+            if (!prevIsDragging || !prevHasMoved) {
+              setDragOffset(0);
+              setHasMoved(false);
+              setStartX(0);
+              setCurrentX(0);
+              return false;
+            }
+            
+            // Threshold maior para dispositivos maiores
+            const threshold = window.innerWidth > 768 ? 80 : 50;
+            
+            setDragOffset(prevDragOffset => {
+              if (Math.abs(prevDragOffset) > threshold) {
+                if (prevDragOffset > 0) {
+                  // prevSlide logic
+                  setIsTransitioning(prevIsTransitioning => {
+                    if (!prevIsTransitioning) {
+                      setIsTransitioning(true);
+                      setCurrentIndex(prevCurrentIndex => {
+                        if (prevCurrentIndex === 0) {
+                          setCurrentIndex(categoriesData.length);
+                          setTimeout(() => {
+                            setCurrentIndex(categoriesData.length - 1);
+                            setIsTransitioning(false);
+                          }, 50);
+                          return categoriesData.length;
+                        } else {
+                          const newIndex = prevCurrentIndex - 1;
+                          setTimeout(() => setIsTransitioning(false), 600);
+                          return newIndex;
+                        }
+                      });
+                    }
+                    return prevIsTransitioning;
+                  });
+                } else {
+                  // nextSlide logic
+                  setIsTransitioning(prevIsTransitioning => {
+                    if (!prevIsTransitioning) {
+                      setIsTransitioning(true);
+                      setCurrentIndex(prevCurrentIndex => {
+                        const newIndex = prevCurrentIndex + 1;
+                        if (newIndex === categoriesData.length) {
+                          setTimeout(() => {
+                            setCurrentIndex(0);
+                            setIsTransitioning(false);
+                          }, 600);
+                        } else {
+                          setTimeout(() => setIsTransitioning(false), 600);
+                        }
+                        return newIndex;
+                      });
+                    }
+                    return prevIsTransitioning;
+                  });
+                }
+              }
+              
+              setDragOffset(0);
+              setStartX(0);
+              setCurrentX(0);
+              setHasMoved(false);
+              return 0;
+            });
+            
+            return false;
+          });
+          return false;
+        });
+      };
+      
+      container.addEventListener('touchstart', touchStartHandler, { passive: false });
+      container.addEventListener('touchmove', touchMoveHandler, { passive: false });
+      container.addEventListener('touchend', touchEndHandler, { passive: false });
+      
+      return () => {
+        container.removeEventListener('touchstart', touchStartHandler);
+        container.removeEventListener('touchmove', touchMoveHandler);
+        container.removeEventListener('touchend', touchEndHandler);
+      };
     }
-  };
-  
-  const handleTouchEnd = () => {
-    handleEnd();
-  };
+  }, []); // Sem dependências para evitar recriação
 
   const getTransformStyle = () => {
     const slideWidth = window.innerWidth <= 768 ? 100 : (window.innerWidth <= 1024 ? 50 : 33.333);
@@ -319,14 +462,12 @@ function Categories() {
   return (
     <section className="category-swiper-section">
       <div 
+        ref={containerRef}
         className="category-swiper-container"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
       >
         <div 
           className="swiper-wrapper"
@@ -360,13 +501,13 @@ function Categories() {
                     <div 
                       className="category-card-image category-placeholder"
                       style={{
-                        background: 'linear-gradient(45deg, #1a1a1a, #2a2a2a)',
+                        background: 'linear-gradient(45deg, #e5e7eb, #f3f4f6)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center'
                       }}
                     >
-                      <i className="fas fa-image" style={{color: '#666', fontSize: '2rem'}}></i>
+                      <i className="fas fa-image" style={{color: '#9ca3af', fontSize: '2rem'}}></i>
                     </div>
                   )}
                   <div className="category-card-overlay">
@@ -479,7 +620,7 @@ function Products() {
   const [filter, setFilter] = React.useState('todos');
   const filteredProducts = filter === 'todos' ? productsData : productsData.filter(p => p.category === filter);
   return (
-    <section className="section" style={{ backgroundColor: '#0a0a0a' }}>
+    <section className="section" style={{ backgroundColor: 'var(--bg-section)' }}>
       <div className="container">
         <h2 className="section-title">Destaques</h2>
         <div className="filter-container">
@@ -594,7 +735,7 @@ function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <a href="#" className="logo">
-              <img src="https://via.placeholder.com/120x40/ffffff/000000?text=LOGO" alt="Logo" className="logo-img" />
+              <img src="./img/Logos/logo.png" alt="Logo" className="logo-img" />
             </a>
             <p className="footer-description">A NewHope é uma loja de moda urbana que traz as melhores marcas e tendências para você se expressar através do estilo.</p>
             <div className="social-links">
