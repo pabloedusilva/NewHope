@@ -14,7 +14,7 @@ function Header() {
     <header className={isScrolled ? 'scrolled' : ''}>
       <div className="container header-container">
         <a href="#" className="logo">
-          <img src="https://via.placeholder.com/120x40/ffffff/000000?text=LOGO" alt="Logo" className="logo-img" />
+          <img src="./img/Logos/logo.png" alt="Logo" className="logo-img" />
         </a>
         <div className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <i className={isMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
@@ -48,7 +48,7 @@ function Hero() {
           muted
           loop
           playsInline
-          poster="https://images.unsplash.com/photo-1556906781-2f0520405b71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+          poster="./img/newsletter/newsletter1.png"
         >
           <source src="https://cdn.coverr.co/videos/coverr-a-man-walking-in-a-subway-station-2747/1080p.mp4" type="video/mp4" />
           <source src="https://cdn.coverr.co/videos/coverr-a-man-walking-in-a-subway-station-2747/1080p.webm" type="video/webm" />
@@ -217,7 +217,7 @@ function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <a href="#" className="logo">
-              <img src="https://via.placeholder.com/120x40/ffffff/000000?text=LOGO" alt="Logo" className="logo-img" />
+              <img src="./img/Logos/logo.png" alt="Logo" className="logo-img" />
             </a>
             <p className="footer-description">A mais nova loja de streetwear do Brasil, trazendo as melhores marcas e tendências para você se expressar através da moda.</p>
             <div className="social-links">
