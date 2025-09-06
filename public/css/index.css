@@ -1398,11 +1398,14 @@ header.hero-navbar.menu-open .nav-menu {
     padding: 100px 0;
 }
 
-/* Textos em branco na seção Promoções */
-.promo-section .section-title,
+/* Textos em branco na seção Promoções (exceto o título da seção) */
 .promo-section .carousel-title,
 .promo-section .carousel-description {
     color: var(--primary);
+}
+/* Título da seção Promoções em preto, como os demais */
+.promo-section .section-title {
+    color: var(--secondary);
 }
 
 .carousel {
