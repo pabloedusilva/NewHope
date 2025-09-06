@@ -651,6 +651,25 @@ function Products() {
   );
 }
 
+function MidBanner() {
+  // Banner em vídeo (loop infinito) entre Produtos e Instagram
+  return (
+    <section className="mid-banner" aria-label="Banner em vídeo">
+      <video
+        className="mid-banner-video"
+        src="./video/banners/banner1.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      >
+        Seu navegador não suporta vídeo em HTML5.
+      </video>
+    </section>
+  );
+}
+
 function Instagram() {
   return (
     <section className="instagram-section">
@@ -824,6 +843,7 @@ function App() {
       <Categories />
       <FreteGratisBanner />
       <Products />
+  <MidBanner />
       <Instagram />
       <Carousel />
       <Newsletter />

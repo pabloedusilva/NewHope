@@ -685,6 +685,31 @@ header.hero-navbar.menu-open .nav-menu {
     }
 }
 
+/* Mid Banner (full-bleed responsive) */
+.mid-banner {
+    position: relative;
+    /* full-bleed without causing horizontal scrollbars */
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    overflow: hidden;
+    background: #111;
+}
+
+.mid-banner-video,
+.mid-banner-img {
+    display: block;
+    width: 100%;
+    height: clamp(320px, 40vw, 560px);
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(0.95) contrast(1.05);
+}
+
+@media (max-width: 768px) {
+    .mid-banner-video,
+    .mid-banner-img { height: clamp(220px, 55vw, 420px); }
+}
+
 /* Faixa Frete Grátis Infinita */
 .frete-gratis-banner {
     background: var(--gray-light);
