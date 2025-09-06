@@ -12,16 +12,13 @@ const productsData = [
   { id: 8, name: 'Short Cargo', price: 139.90, image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75', category: 'shorts' }
 ];
 
-// Dados das categorias para o carousel
+// Dados das categorias para o carousel (novas categorias locais)
 const categoriesData = [
-  { id: 1, name: 'JEANS', image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
-  { id: 2, name: 'SHORTS', image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
-  { id: 3, name: 'CAMISETAS', image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
-  { id: 4, name: 'TÊNIS', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
-  { id: 5, name: 'MOLETOM', image: 'https://images.unsplash.com/photo-1588117305388-c2631a279f82?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
-  { id: 6, name: 'JAQUETAS', image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
-  { id: 7, name: 'BONÉS', image: 'https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' },
-  { id: 8, name: 'REGATAS', image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75' }
+  { id: 1, name: 'CHRONIC', image: './img/categorias/Chronic.png' },
+  { id: 2, name: 'BONÉS', image: './img/categorias/Bon%C3%A9s.png' },
+  { id: 3, name: 'BERMUDAS', image: './img/categorias/Bermudas.png' },
+  { id: 4, name: 'CAMISAS DE TIME', image: './img/categorias/Camisas%20de%20Time.png' },
+  { id: 5, name: 'BLESSED CHOICE', image: './img/categorias/Blessed%20Choice.png' }
 ];
 
 // Dados do carrossel
