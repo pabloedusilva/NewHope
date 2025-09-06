@@ -21,11 +21,32 @@ const categoriesData = [
   { id: 5, name: 'BLESSED CHOICE', image: './img/categorias/Blessed%20Choice.png' }
 ];
 
-// Dados do carrossel
+// Dados do carrossel (imagens locais de Promoções)
 const carouselData = [
-  { id: 1, title: 'BLACK FRIDAY ATÉ 70% OFF', description: 'Aproveite os melhores descontos em peças selecionadas. Edição limitada!', image: 'https://images.unsplash.com/photo-1463100099107-aa0980c362e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75', buttonText: 'Conferir Ofertas' },
-  { id: 2, title: 'COLEÇÃO VERÃO 2023', description: 'As peças mais frescas e estilosas para o verão já estão disponíveis!', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75', buttonText: 'Ver Coleção' },
-  { id: 3, title: 'FRETE GRÁTIS EM TODAS AS COMPRAS', description: 'Aproveite o frete grátis em todos os produtos durante o mês de lançamento!', image: 'https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75', buttonText: 'Comprar Agora' }
+  {
+    id: 1,
+    title: 'CHRONIC',
+    description: 'Coleção exclusiva Chronic.',
+    image: './img/Promo%C3%A7%C3%B5es/Chronic.png',
+    buttonText: 'Ver Coleção',
+    showContent: true
+  },
+  {
+    id: 2,
+    title: 'BRASIL RETRÔ',
+    description: 'Camisas retrô do Brasil.',
+    image: './img/Promo%C3%A7%C3%B5es/Brasil%20Retro.png',
+    buttonText: 'Conferir',
+    showContent: true
+  },
+  {
+    id: 3,
+    title: 'JESUS SALVA',
+    description: '',
+    image: './img/Promo%C3%A7%C3%B5es/Jesus%20Salva.png',
+    buttonText: '',
+    showContent: false // somente a imagem
+  }
 ];
 
 // Componentes
@@ -710,12 +731,14 @@ function Carousel() {
           <div className="carousel-inner" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
             {carouselData.map(item => (
               <div key={item.id} className="carousel-item">
-                <img src={item.image} alt="Promoção" className="carousel-img" loading="lazy" decoding="async" />
-                <div className="carousel-content">
-                  <h3 className="carousel-title">{item.title}</h3>
-                  <p className="carousel-description">{item.description}</p>
-                  <a href="#" className="btn">{item.buttonText}</a>
-                </div>
+                <img src={item.image} alt={item.title || 'Promoção'} className="carousel-img" loading="lazy" decoding="async" />
+                {item.showContent && (
+                  <div className="carousel-content">
+                    <h3 className="carousel-title">{item.title}</h3>
+                    {item.description && <p className="carousel-description">{item.description}</p>}
+                    {item.buttonText && <a href="#" className="btn">{item.buttonText}</a>}
+                  </div>
+                )}
               </div>
             ))}
           </div>
