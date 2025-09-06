@@ -71,6 +71,9 @@ function Header() {
         </ul>
         <div className="header-icons">
           <div className="icon-item"><i className="fas fa-user"></i></div>
+          <div className="icon-item favorites-icon" role="button" aria-label="Favoritos">
+            <i className="fas fa-heart"></i>
+          </div>
           <div className="icon-item cart-icon">
             <i className="fas fa-shopping-bag"></i>
           </div>
