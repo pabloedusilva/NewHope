@@ -8,6 +8,14 @@
     background: var(--secondary);
 }
 
+/* Carousel dinâmico logo abaixo do carrossel de clubes */
+.club-hero-carousel-section {
+    margin-top: 10px; /* "colado" abaixo do carrossel de clubes */
+    position: relative;
+    overflow: hidden;
+    background: var(--secondary);
+}
+
 .carousel-container {
     position: relative;
     width: 100%;
@@ -417,7 +425,8 @@
         height: 100px;
     }
     
-    .carousel-image {
+    /* Corrige: isso deve afetar apenas os ícones dos clubes, não os slides do hero/carrossel dinâmico */
+    .clubs-carousel-image {
         width: 65px;
         height: 65px;
     }
@@ -447,7 +456,7 @@
 
 @media (max-width: 768px) {
     .carousel-container {
-        height: 60vh;
+    height: 60vh;
         min-height: 400px;
     }
     
@@ -775,5 +784,83 @@
     .clubs-carousel-arrow {
         min-width: 44px;
         min-height: 44px;
+    }
+}
+
+/* Overrides adicionados para o carrossel dinâmico de clubes */
+.section-carrousel-clubs {
+    padding: 60px 0 10px; /* reduzir espaço inferior para ficar colado ao próximo carrossel */
+}
+
+.club-hero-carousel-section {
+    margin-top: 0; /* colado ao carrossel de clubes */
+}
+
+.club-hero-carousel-section .carousel-container {
+    height: 65vh; /* tornar mais alto em telas grandes */
+    min-height: 420px;
+    max-height: 720px;
+}
+
+/* Deixar o hero com o mesmo enquadramento que o carrossel dinâmico */
+.hero-carousel-section .carousel-container {
+    height: 65vh; /* igual ao dinâmico */
+    min-height: 420px;
+    max-height: 720px;
+}
+
+@media (max-width: 768px) {
+    .club-hero-carousel-section .carousel-container {
+    height: 32vh; /* ainda mais achatado */
+    min-height: 220px;
+    max-height: 380px;
+    }
+    .hero-carousel-section .carousel-container {
+        height: 32vh; /* igual ao dinâmico */
+        min-height: 220px;
+        max-height: 380px;
+    }
+}
+
+@media (max-width: 480px) {
+    .club-hero-carousel-section .carousel-container {
+        height: 24vh; /* mais achatado em celulares */
+        min-height: 160px;
+        max-height: 280px;
+    }
+    /* Sempre cobrir: preencher totalmente o container no carrossel dinâmico */
+    .club-hero-carousel-section .carousel-image {
+        object-fit: cover; /* cobre todo o container */
+        object-position: center center;
+    }
+    .hero-carousel-section .carousel-container {
+        height: 24vh; /* igual ao dinâmico */
+        min-height: 160px;
+        max-height: 280px;
+    }
+    .hero-carousel-section .carousel-image {
+        object-fit: cover; /* cobre todo o container */
+        object-position: center center;
+    }
+}
+
+@media (max-width: 320px) {
+    .club-hero-carousel-section .carousel-container {
+        height: 22vh; /* ainda mais achatado em telas muito pequenas */
+        min-height: 150px;
+        max-height: 240px;
+    }
+    .club-hero-carousel-section .carousel-image {
+        object-fit: cover; /* cobre todo o container */
+        object-position: center center;
+    }
+    .hero-carousel-section .carousel-container {
+        height: 22vh; /* igual ao dinâmico */
+        min-height: 150px;
+        max-height: 240px;
+    }
+    .hero-carousel-section .carousel-image {
+        object-fit: cover; /* cobre todo o container */
+        object-position: center center;
     }
 }

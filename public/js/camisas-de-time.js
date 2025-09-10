@@ -22,21 +22,21 @@ const camisasTimeData = [
 const carouselCamisasData = [
   {
     id: 1,
-    title: 'BRASIL RETRÔ 2002',
-    description: 'Reviva a conquista do pentacampeonato com a camisa retrô mais icônica do futebol brasileiro.',
-    image: 'https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=900&q=80',
-    buttonText: 'Comprar Agora',
-    showContent: true,
-    discount: '25% OFF'
+    title: 'Cruzeiro x Atlético',
+    description: '',
+    image: '../img/banners/cruzeiro-x-atleticomineiro.png',
+    buttonText: '',
+    showContent: false,
+    discount: ''
   },
   {
     id: 2,
-    title: 'CAMISAS EUROPEIAS',
-    description: 'As melhores camisas dos grandes clubes europeus com entrega rápida.',
-    image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=900&q=80',
-    buttonText: 'Ver Coleção',
-    showContent: true,
-    discount: 'FRETE GRÁTIS'
+    title: 'Barcelona x Real Madrid',
+    description: '',
+    image: '../img/banners/barcelona-x-real.png',
+    buttonText: '',
+    showContent: false,
+    discount: ''
   }
 ];
 
@@ -69,6 +69,27 @@ const clubesEuropeus = [
   { id: 'milan', name: 'AC Milan', image: 'https://logoeps.com/wp-content/uploads/2013/03/ac-milan-vector-logo.png' },
   { id: 'inter-miami', name: 'Inter Miami', image: 'https://logoeps.com/wp-content/uploads/2020/02/inter-miami-cf-vector-logo.png' }
 ];
+
+const clubAssets = {
+  // Brasileirão
+  'flamengo': { logo: '../img/times/flamengo.png', banner: '../img/banners/flamengo.png' },
+  'palmeiras': { logo: '../img/times/palmeiras.png', banner: '../img/banners/palmeiras.png' },
+  'cruzeiro': { logo: '../img/times/cruzeiro.png', banner: '../img/banners/cruzeiro.png' },
+  'santos': { logo: '../img/times/santos.png', banner: '../img/banners/santos.png' },
+  'botafogo': { logo: '../img/times/botafogo.png' },
+  'atletico-mineiro': { logo: '../img/times/atleticomineiro.png', banner: '../img/banners/atleticomineiro.png' },
+  'sao-paulo': { logo: '../img/times/saopaulo.png' },
+  'vasco': { banner: '../img/banners/vasco.png' },
+  // Europeus
+  'psg': { logo: '../img/times/psg.png', banner: '../img/banners/psg.png' },
+  'real-madrid': { logo: '../img/times/realmadrid.png', banner: '../img/banners/realmadrid.png' },
+  'barcelona': { logo: '../img/times/barcelona.png', banner: '../img/banners/barcelona.png' },
+  'liverpool': { banner: '../img/banners/liverpool.png' },
+  'inter-miami': { banner: '../img/banners/intermiami.png' }
+};
+
+// Ordem padrão para quando "Todos" estiver selecionado (passearemos por banners/logos disponíveis)
+const availableClubsOrder = Object.keys(clubAssets);
 
 // Dados das categorias/filtros atualizados
 const categoriesTeamData = [
@@ -368,6 +389,62 @@ function CarouselClubes({ onClubSelect, currentLeague, onLeagueChange }) {
   );
 }
 
+// Carousel dinâmico que atualiza conforme o clube selecionado
+function DynamicClubCarousel({ images }) {
+  const [current, setCurrent] = React.useState(0);
+  const [isAnimating, setIsAnimating] = React.useState(true);
+
+  // Resetar ao trocar a lista de imagens
+  React.useEffect(() => {
+    setIsAnimating(false);
+    setCurrent(0);
+    const t = setTimeout(() => setIsAnimating(true), 50);
+    return () => clearTimeout(t);
+  }, [images]);
+
+  // Auto-play
+  React.useEffect(() => {
+    if (!images || images.length <= 1) return; // nada para animar
+    const id = setInterval(() => {
+      setIsAnimating(true);
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [images]);
+
+  if (!images || images.length === 0) return null;
+
+  return (
+    <section className="club-hero-carousel-section">
+      <div className="carousel-container">
+        <div className="carousel-wrapper">
+          <div
+            className="carousel-track"
+            style={{
+              transform: `translateX(-${current * 100}%)`,
+              transition: isAnimating ? 'transform 0.6s ease' : 'none'
+            }}
+          >
+            {images.map((src, idx) => (
+              <div className="carousel-slide" key={`${idx}-${src}`}> 
+                <div className="carousel-image-container">
+                  <img
+                    src={src}
+                    alt="Imagem do clube"
+                    className="carousel-image"
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Componente ProductCard reutilizado
 function ProductCard({ product, animationClass }) {
   const [liked, setLiked] = React.useState(false);
@@ -458,6 +535,37 @@ function CamisasTimeProducts() {
     setSelectedClub('todos');
   };
 
+  // Imagens do carrossel dinâmico com base nos arquivos locais de times/banners
+  const dynamicCarouselImages = React.useMemo(() => {
+    // Helper para construir [banner, logo] do clube quando disponível
+    const buildClubImages = (clubId) => {
+      const asset = clubAssets[clubId];
+      if (!asset) return [];
+      const arr = [];
+      if (asset.banner) arr.push(asset.banner);
+      if (asset.logo) arr.push(asset.logo);
+      return arr;
+    };
+
+    if (selectedClub && selectedClub !== 'todos') {
+      const imgs = buildClubImages(selectedClub);
+      return imgs.length ? imgs : carouselCamisasData.map(i => i.image);
+    }
+
+    // Caso especial: "Todos" no Brasileirão deve exibir apenas os banners brasileiros
+    if (currentLeague === 'brasileirao') {
+      const brasImgs = [
+        '../img/banners/brasileirao1.png',
+        '../img/banners/brasileirao2.png'
+      ];
+      return brasImgs;
+    }
+
+    // Quando "Todos" estiver ativo: percorre os clubes com assets disponíveis
+    const imgsAll = availableClubsOrder.flatMap((id) => buildClubImages(id));
+    return imgsAll.length ? imgsAll : carouselCamisasData.map(i => i.image);
+  }, [selectedClub, currentLeague]);
+
   return (
     <section className="section" style={{ backgroundColor: 'var(--bg-section)' }}>
       <div className="container">
@@ -467,6 +575,9 @@ function CamisasTimeProducts() {
           currentLeague={currentLeague}
           onLeagueChange={handleLeagueChange}
         />
+
+  {/* Carrossel dinâmico colado logo abaixo do carrossel de clubes */}
+  <DynamicClubCarousel images={dynamicCarouselImages} />
 
         <div className="products-grid">
           {filteredProducts.map((product, index) => (
