@@ -508,7 +508,7 @@ function Categories() {
                 key={index === categoriesData.length ? `${category.id}-clone` : category.id}
                 className="swiper-slide"
               >
-                <a href="#" className="category-card">
+                <a href={category.name === 'CAMISAS DE TIME' ? './categorias/camisas-de-time.html' : '#'} className="category-card">
                   {shouldLoad ? (
                     <img 
                       src={category.image} 
