@@ -196,20 +196,36 @@ function CarouselCamisas() {
 
 // Carousel de Clubes
 function CarouselClubes({ onClubSelect, currentLeague, onLeagueChange }) {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const itemsPerPage = 4; // 4 itens visíveis como no layout
+  const [currentIndex, setCurrentIndex] = React.useState(itemsPerPage); // iniciar após clones iniciais
+  const [isAnimating, setIsAnimating] = React.useState(true);
   const [selectedClub, setSelectedClub] = React.useState('todos');
+  // Swipe state
+  const [dragging, setDragging] = React.useState(false);
+  const [dragDX, setDragDX] = React.useState(0);
+  const contentRef = React.useRef(null);
+  const startXRef = React.useRef(0);
+  const widthRef = React.useRef(0);
   
   const clubes = currentLeague === 'brasileirao' ? clubesBrasileirao : clubesEuropeus;
-  const itemsPerPage = 4; // Número de itens visíveis por vez (como na imagem)
-  const totalItems = clubes.length + 1; // +1 para o item "Todos"
-  const maxIndex = Math.max(0, totalItems - itemsPerPage);
+  // Base de itens: "Todos" + clubes
+  const baseItems = React.useMemo(() => [{ id: 'todos', name: 'Todos', isAll: true }, ...clubes], [clubes]);
+  const totalItems = baseItems.length;
+  // Clonar as extremidades para loop infinito
+  const augmentedItems = React.useMemo(() => {
+    const head = baseItems.slice(0, itemsPerPage);
+    const tail = baseItems.slice(-itemsPerPage);
+    return [...tail, ...baseItems, ...head];
+  }, [baseItems]);
 
   const nextSlide = () => {
-    setCurrentIndex(prev => Math.min(prev + 1, maxIndex));
+    setIsAnimating(true);
+    setCurrentIndex(prev => prev + 1);
   };
 
   const prevSlide = () => {
-    setCurrentIndex(prev => Math.max(prev - 1, 0));
+    setIsAnimating(true);
+    setCurrentIndex(prev => prev - 1);
   };
 
   const handleClubClick = (clubId) => {
@@ -219,9 +235,34 @@ function CarouselClubes({ onClubSelect, currentLeague, onLeagueChange }) {
 
   const handleLeagueToggle = (league) => {
     onLeagueChange(league);
-    setCurrentIndex(0);
+  setIsAnimating(false);
+  setCurrentIndex(itemsPerPage);
     setSelectedClub('todos');
     onClubSelect('todos');
+  };
+
+  // Swipe handlers (touch + mouse)
+  const beginDrag = (x) => {
+    setIsAnimating(false);
+    setDragging(true);
+    startXRef.current = x;
+    widthRef.current = contentRef.current ? contentRef.current.offsetWidth : window.innerWidth;
+    setDragDX(0);
+  };
+  const moveDrag = (x) => {
+    if (!dragging) return;
+    setDragDX(x - startXRef.current);
+  };
+  const endDrag = () => {
+    if (!dragging) return;
+    const dx = dragDX;
+    const threshold = Math.min(80, widthRef.current * 0.12); // 12% ou 80px
+    setDragging(false);
+    setIsAnimating(true);
+    setDragDX(0);
+    if (Math.abs(dx) > threshold) {
+      if (dx > 0) prevSlide(); else nextSlide();
+    }
   };
 
   return (
@@ -251,47 +292,65 @@ function CarouselClubes({ onClubSelect, currentLeague, onLeagueChange }) {
           <button 
             className="clubs-carousel-arrow prev" 
             onClick={prevSlide}
-            disabled={currentIndex === 0}
-            style={{ opacity: currentIndex === 0 ? 0.3 : 1 }}
           >
             <i className="fas fa-chevron-left" aria-hidden="true"></i>
           </button>
 
-          <div className="clubs-carousel-content">
+          <div 
+            className="clubs-carousel-content"
+            ref={contentRef}
+            onTouchStart={(e) => beginDrag(e.touches[0].clientX)}
+            onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
+            onTouchEnd={endDrag}
+            onMouseDown={(e) => beginDrag(e.clientX)}
+            onMouseMove={(e) => moveDrag(e.clientX)}
+            onMouseLeave={endDrag}
+            onMouseUp={endDrag}
+            style={{ cursor: dragging ? 'grabbing' : 'grab' }}
+          >
             <div 
               className="clubs-carousel-track"
               style={{
-                transform: `translateX(-${currentIndex * 25}%)`, // 25% = 100% / 4 itens
-                transition: 'transform 0.3s ease-in-out'
+                transform: `translateX(${(-currentIndex * 25) + (dragging && widthRef.current ? (dragDX / widthRef.current) * 100 : 0)}%)`, // 25% = 100% / 4 itens
+                transition: isAnimating ? 'transform 0.3s ease-in-out' : 'none'
+              }}
+              onTransitionEnd={() => {
+                // Se passou dos limites (clones), reposiciona sem animação
+                if (currentIndex >= totalItems + itemsPerPage) {
+                  setIsAnimating(false);
+                  setCurrentIndex(prev => prev - totalItems);
+                } else if (currentIndex < itemsPerPage) {
+                  setIsAnimating(false);
+                  setCurrentIndex(prev => prev + totalItems);
+                }
               }}
             >
-              {/* Item "Todos" */}
-              <div className="clubs-carousel-item">
-                <button 
-                  className={`clubs-carousel-link ${selectedClub === 'todos' ? 'active' : ''}`}
-                  onClick={() => handleClubClick('todos')}
-                >
-                  <div className="all-teams-icon">
-                    <i className="fas fa-th-large"></i>
-                    <span>Todos</span>
-                  </div>
-                </button>
-              </div>
-              
-              {/* Clubes */}
-              {clubes.map((clube) => (
-                <div key={clube.id} className="clubs-carousel-item">
-                  <button 
-                    className={`clubs-carousel-link ${selectedClub === clube.id ? 'active' : ''}`}
-                    onClick={() => handleClubClick(clube.id)}
-                  >
-                    <img 
-                      src={clube.image} 
-                      alt={clube.name} 
-                      className="clubs-carousel-image" 
-                      loading="lazy"
-                    />
-                  </button>
+              {/* Itens com clones para loop infinito */}
+              {augmentedItems.map((item, idx) => (
+                <div key={`${item.id}-${idx}`} className="clubs-carousel-item">
+                  {item.isAll ? (
+                    <button 
+                      className={`clubs-carousel-link ${selectedClub === 'todos' ? 'active' : ''}`}
+                      onClick={(e) => { if (dragging) return; handleClubClick('todos'); }}
+                    >
+                      <div className="all-teams-icon">
+                        <i className="fas fa-th-large"></i>
+                        <span>Todos</span>
+                      </div>
+                    </button>
+                  ) : (
+                    <button 
+                      className={`clubs-carousel-link ${selectedClub === item.id ? 'active' : ''}`}
+                      onClick={(e) => { if (dragging) return; handleClubClick(item.id); }}
+                    >
+                      <img 
+                        src={item.image} 
+                        alt={item.name} 
+                        className="clubs-carousel-image" 
+                        loading="lazy"
+                      />
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
@@ -300,8 +359,6 @@ function CarouselClubes({ onClubSelect, currentLeague, onLeagueChange }) {
           <button 
             className="clubs-carousel-arrow next" 
             onClick={nextSlide}
-            disabled={currentIndex >= maxIndex}
-            style={{ opacity: currentIndex >= maxIndex ? 0.3 : 1 }}
           >
             <i className="fas fa-chevron-right" aria-hidden="true"></i>
           </button>
