@@ -1077,6 +1077,7 @@ function ProductsPage() {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [categoryFilter, setCategoryFilter] = React.useState('');
   const [stockFilter, setStockFilter] = React.useState('');
+  const [viewMode, setViewMode] = React.useState('table'); // table or cards
 
   React.useEffect(() => {
     loadProducts();
@@ -1187,15 +1188,33 @@ function ProductsPage() {
           <h1 className="page-title"><i className="fas fa-box"></i> Gerenciar Produtos</h1>
           <p className="page-subtitle">Administre todos os produtos da loja</p>
         </div>
-        <button 
-          className="btn btn-primary" 
-          onClick={() => {
-            setEditingProduct(null);
-            setShowModal(true);
-          }}
-        >
-          <i className="fas fa-plus"></i> Novo Produto
-        </button>
+        <div className="header-actions">
+          <div className="view-toggle">
+            <button 
+              className={viewMode === 'table' ? 'active' : ''}
+              onClick={() => setViewMode('table')}
+              title="Visualização em tabela"
+            >
+              <i className="fas fa-table"></i>
+            </button>
+            <button 
+              className={viewMode === 'cards' ? 'active' : ''}
+              onClick={() => setViewMode('cards')}
+              title="Visualização em cards"
+            >
+              <i className="fas fa-th"></i>
+            </button>
+          </div>
+          <button 
+            className="btn btn-primary" 
+            onClick={() => {
+              setEditingProduct(null);
+              setShowModal(true);
+            }}
+          >
+            <i className="fas fa-plus"></i> Novo Produto
+          </button>
+        </div>
       </div>
 
       <div className="filters-section card">
@@ -1273,68 +1292,121 @@ function ProductsPage() {
 
       <div className="card">
         <div className="card-content">
-          <div className="table-responsive">
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>Produto</th>
-                  <th>Categoria</th>
-                  <th>Preço</th>
-                  <th>Estoque</th>
-                  <th>Status</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredProducts.map(product => (
-                  <tr key={product.id}>
-                    <td>
-                      <div className="product-info">
-                        <img src={product.image} alt={product.name} className="product-image" />
-                        <div>
-                          <div className="product-name">{product.name}</div>
-                          <div className="product-club">{product.club}</div>
+          {viewMode === 'table' ? (
+            <div className="table-responsive">
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th>Produto</th>
+                    <th>Categoria</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredProducts.map(product => (
+                    <tr key={product.id}>
+                      <td>
+                        <div className="product-info">
+                          <img src={product.image} alt={product.name} className="product-image" />
+                          <div>
+                            <div className="product-name">{product.name}</div>
+                            <div className="product-club">{product.club}</div>
+                          </div>
                         </div>
+                      </td>
+                      <td>{product.category}</td>
+                      <td className="price">R$ {product.price.toFixed(2)}</td>
+                      <td>
+                        <span className={`stock-badge ${product.stock === 0 ? 'out-of-stock' : product.stock <= 10 ? 'low-stock' : ''}`}>
+                          {product.stock}
+                        </span>
+                      </td>
+                      <td>
+                        <span className={`status-badge ${product.status}`}>
+                          {product.status === 'active' ? 'Ativo' : 'Inativo'}
+                        </span>
+                      </td>
+                      <td>
+                        <div className="actions">
+                          <button 
+                            className="btn-icon edit" 
+                            onClick={() => {
+                              setEditingProduct(product);
+                              setShowModal(true);
+                            }}
+                            title="Editar"
+                          >
+                            <i className="fas fa-edit"></i>
+                          </button>
+                          <button 
+                            className="btn-icon delete" 
+                            onClick={() => handleDeleteProduct(product.id)}
+                            title="Excluir"
+                          >
+                            <i className="fas fa-trash"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="products-grid">
+              {filteredProducts.map(product => (
+                <div key={product.id} className="product-card">
+                  <div className="product-card-image">
+                    <img src={product.image} alt={product.name} />
+                    <span className={`status-badge ${product.status}`}>
+                      {product.status === 'active' ? 'Ativo' : 'Inativo'}
+                    </span>
+                  </div>
+                  <div className="product-card-content">
+                    <h3 className="product-card-name">{product.name}</h3>
+                    <p className="product-card-club">{product.club}</p>
+                    <p className="product-card-category">{product.category}</p>
+                    
+                    <div className="product-card-stats">
+                      <div className="stat">
+                        <span className="stat-label">Preço</span>
+                        <span className="stat-value price">R$ {product.price.toFixed(2)}</span>
                       </div>
-                    </td>
-                    <td>{product.category}</td>
-                    <td className="price">R$ {product.price.toFixed(2)}</td>
-                    <td>
-                      <span className={`stock-badge ${product.stock === 0 ? 'out-of-stock' : product.stock <= 10 ? 'low-stock' : ''}`}>
-                        {product.stock}
-                      </span>
-                    </td>
-                    <td>
-                      <span className={`status-badge ${product.status}`}>
-                        {product.status === 'active' ? 'Ativo' : 'Inativo'}
-                      </span>
-                    </td>
-                    <td>
-                      <div className="actions">
+                      <div className="stat">
+                        <span className="stat-label">Estoque</span>
+                        <span className={`stat-value stock-badge ${product.stock === 0 ? 'out-of-stock' : product.stock <= 10 ? 'low-stock' : ''}`}>
+                          {product.stock}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="product-card-footer">
+                      <div className="product-card-actions">
                         <button 
-                          className="btn-icon edit" 
+                          className="btn btn-secondary btn-sm"
                           onClick={() => {
                             setEditingProduct(product);
                             setShowModal(true);
                           }}
-                          title="Editar"
                         >
-                          <i className="fas fa-edit"></i>
+                          <i className="fas fa-edit"></i> Editar
                         </button>
                         <button 
-                          className="btn-icon delete" 
+                          className="btn btn-danger btn-sm"
                           onClick={() => handleDeleteProduct(product.id)}
-                          title="Excluir"
                         >
                           <i className="fas fa-trash"></i>
                         </button>
                       </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
