@@ -192,6 +192,284 @@ function Modal({ isOpen, onClose, title, children, size = 'medium' }) {
   );
 }
 
+// Gallery Modal Component - Modal dinâmico para seleção de imagens
+function GalleryModal({ isOpen, onClose, onSelectImage, title = "Selecionar Imagem" }) {
+  const [mediaFiles, setMediaFiles] = React.useState([]);
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [categoryFilter, setCategoryFilter] = React.useState('');
+  const [selectedImage, setSelectedImage] = React.useState('');
+
+  React.useEffect(() => {
+    if (isOpen) {
+      loadMediaFiles();
+    }
+  }, [isOpen]);
+
+  const loadMediaFiles = () => {
+    const savedMedia = localStorage.getItem('dashboard_media');
+    if (savedMedia) {
+      setMediaFiles(JSON.parse(savedMedia));
+    } else {
+      // Initialize with mock data based on your site structure
+      const mockMedia = [
+        {
+          id: 1,
+          name: 'logo.png',
+          category: 'Logos',
+          url: '/img/Logos/logo.png',
+          type: 'image',
+          size: '45KB',
+          uploadedAt: '2024-01-15T10:30:00Z',
+          usedIn: ['Header', 'Footer']
+        },
+        {
+          id: 2,
+          name: 'Brasil Retro.png',
+          category: 'Promoções',
+          url: '/img/Promoções/Brasil Retro.png',
+          type: 'image',
+          size: '120KB',
+          uploadedAt: '2024-01-20T14:15:00Z',
+          usedIn: ['Banner Principal']
+        },
+        {
+          id: 3,
+          name: 'Chronic.png',
+          category: 'Promoções',
+          url: '/img/Promoções/Chronic.png',
+          type: 'image',
+          size: '95KB',
+          uploadedAt: '2024-01-20T15:30:00Z',
+          usedIn: ['Seção Promoções']
+        },
+        {
+          id: 4,
+          name: 'Jesus Salva.png',
+          category: 'Promoções',
+          url: '/img/Promoções/Jesus Salva.png',
+          type: 'image',
+          size: '110KB',
+          uploadedAt: '2024-01-20T16:00:00Z',
+          usedIn: ['Banner Secundário']
+        },
+        {
+          id: 5,
+          name: 'Camisas de Time.png',
+          category: 'Categorias',
+          url: '/img/categorias/Camisas de Time.png',
+          type: 'image',
+          size: '85KB',
+          uploadedAt: '2024-01-18T10:00:00Z',
+          usedIn: ['Página Categorias']
+        },
+        {
+          id: 6,
+          name: 'Bermudas.png',
+          category: 'Categorias',
+          url: '/img/categorias/Bermudas.png',
+          type: 'image',
+          size: '75KB',
+          uploadedAt: '2024-01-18T10:15:00Z',
+          usedIn: ['Página Categorias']
+        },
+        {
+          id: 7,
+          name: 'Bonés.png',
+          category: 'Categorias',
+          url: '/img/categorias/Bonés.png',
+          type: 'image',
+          size: '60KB',
+          uploadedAt: '2024-01-18T10:30:00Z',
+          usedIn: ['Página Categorias']
+        },
+        {
+          id: 8,
+          name: 'banner1.mp4',
+          category: 'Banners',
+          url: '/video/banners/banner1.mp4',
+          type: 'video',
+          size: '2.5MB',
+          uploadedAt: '2024-01-22T09:00:00Z',
+          usedIn: ['Banner Principal']
+        },
+        {
+          id: 9,
+          name: 'intro1.mp4',
+          category: 'Videos',
+          url: '/video/intro1.mp4',
+          type: 'video',
+          size: '5.2MB',
+          uploadedAt: '2024-01-25T11:30:00Z',
+          usedIn: ['Página Inicial']
+        }
+      ];
+      setMediaFiles(mockMedia);
+      localStorage.setItem('dashboard_media', JSON.stringify(mockMedia));
+    }
+  };
+
+  const filteredFiles = mediaFiles.filter(file => {
+    const matchesSearch = file.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = categoryFilter === '' || file.category === categoryFilter;
+    return matchesSearch && matchesCategory;
+  });
+
+  const categories = [...new Set(mediaFiles.map(file => file.category))];
+
+  const handleSelectImage = (imageUrl) => {
+    setSelectedImage(imageUrl);
+  };
+
+  const handleConfirmSelection = () => {
+    if (selectedImage && onSelectImage) {
+      onSelectImage(selectedImage);
+      onClose();
+      setSelectedImage('');
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="gallery-modal" onClick={onClose}>
+      <div className="gallery-content" onClick={(e) => e.stopPropagation()}>
+        <div className="gallery-header">
+          <h3 className="gallery-title">{title}</h3>
+          <button 
+            className="gallery-close" 
+            onClick={onClose}
+            aria-label="Fechar modal"
+          >
+            <i className="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div className="gallery-filters">
+          <div className="gallery-search">
+            <i className="fas fa-search"></i>
+            <input
+              type="text"
+              placeholder="Buscar por nome..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <select
+            value={categoryFilter}
+            onChange={(e) => setCategoryFilter(e.target.value)}
+            className="gallery-filter-select"
+          >
+            <option value="">Todas as categorias</option>
+            {categories.map(category => (
+              <option key={category} value={category}>{category}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="gallery-grid-container">
+          <div className="gallery-grid">
+            {filteredFiles.map(file => (
+              <div 
+                key={file.id} 
+                className={`gallery-item ${selectedImage === file.url ? 'selected' : ''}`}
+                onClick={() => handleSelectImage(file.url)}
+              >
+                {file.type === 'image' ? (
+                  <img src={file.url} alt={file.name} className="gallery-item-image" />
+                ) : (
+                  <video src={file.url} className="gallery-item-video" />
+                )}
+                <div className="gallery-item-info">
+                  <div className="gallery-item-name">{file.name}</div>
+                  <div className="gallery-item-type">{file.category}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {filteredFiles.length === 0 && (
+            <div className="gallery-empty">
+              <i className="fas fa-images"></i>
+              <h3>Nenhuma imagem encontrada</h3>
+              <p>Tente ajustar os filtros ou adicione novas imagens à galeria.</p>
+            </div>
+          )}
+        </div>
+
+        <div className="gallery-footer">
+          <button className="btn btn-ghost" onClick={onClose}>
+            Cancelar
+          </button>
+          <button 
+            className="btn btn-primary" 
+            onClick={handleConfirmSelection}
+            disabled={!selectedImage}
+          >
+            <i className="fas fa-check"></i> Selecionar Imagem
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Image Input with Gallery - Componente reutilizável para inputs de imagem
+function ImageInputWithGallery({ 
+  label = "URL da Imagem", 
+  value = "", 
+  onChange, 
+  placeholder = "Cole a URL da imagem ou selecione da galeria",
+  showPreview = true 
+}) {
+  const [showGallery, setShowGallery] = React.useState(false);
+
+  const handleGallerySelect = (imageUrl) => {
+    if (onChange) {
+      onChange(imageUrl);
+    }
+  };
+
+  return (
+    <div className="image-input-group">
+      <label>{label}</label>
+      <div className="image-input-wrapper">
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => onChange && onChange(e.target.value)}
+          placeholder={placeholder}
+          className="form-input"
+        />
+        <button
+          type="button"
+          className="btn btn-secondary gallery-btn"
+          onClick={() => setShowGallery(true)}
+          title="Selecionar da galeria"
+        >
+          <i className="fas fa-images"></i>
+        </button>
+      </div>
+      
+      {showPreview && value && (
+        <div className="image-preview">
+          {value.endsWith('.mp4') || value.endsWith('.webm') || value.endsWith('.mov') ? (
+            <video src={value} width="150" height="100" controls />
+          ) : (
+            <img src={value} alt="Preview" width="150" height="100" />
+          )}
+        </div>
+      )}
+
+      <GalleryModal
+        isOpen={showGallery}
+        onClose={() => setShowGallery(false)}
+        onSelectImage={handleGallerySelect}
+        title="Selecionar Imagem"
+      />
+    </div>
+  );
+}
+
 // Skeleton Loader
 function Skeleton({ width = '100%', height = '20px', className = '' }) {
   return (
@@ -556,6 +834,7 @@ function CamisasPage() {
   const [showBannerModal, setShowBannerModal] = useState(false);
   const [showClubModal, setShowClubModal] = useState(false);
   const [selectedClub, setSelectedClub] = useState(null);
+  const [bannerImage, setBannerImage] = useState('');
 
   useEffect(() => {
     // Simulate API call
@@ -708,21 +987,12 @@ function CamisasPage() {
         size="large"
       >
         <div className="form-group">
-          <label className="form-label">Upload de Imagem</label>
-          <div 
-            style={{
-              border: '2px dashed var(--border)',
-              borderRadius: 'var(--radius)',
-              padding: 'var(--space-xl)',
-              textAlign: 'center',
-              backgroundColor: 'var(--panel)',
-              cursor: 'pointer'
-            }}
-          >
-            <i className="fas fa-cloud-upload-alt" style={{ fontSize: '48px', color: 'var(--text-muted)', marginBottom: 'var(--space-md)' }}></i>
-            <p>Arraste uma imagem ou clique para selecionar</p>
-            <p className="text-sm text-muted mt-sm">Formato recomendado: 16:9, máximo 2MB</p>
-          </div>
+          <ImageInputWithGallery 
+            label="Upload de Imagem do Banner"
+            value={bannerImage}
+            onChange={setBannerImage}
+            placeholder="Selecione uma imagem da galeria ou cole URL"
+          />
         </div>
         
         <div className="form-group">
@@ -1217,15 +1487,12 @@ function ProductModal({ product, onSave, onClose }) {
             </div>
           </div>
 
-          <div className="form-group">
-            <label>URL da Imagem</label>
-            <input
-              type="text"
-              value={formData.image}
-              onChange={(e) => setFormData(prev => ({ ...prev, image: e.target.value }))}
-              placeholder="/img/categorias/produto.png"
-            />
-          </div>
+          <ImageInputWithGallery 
+            label="URL da Imagem"
+            value={formData.image}
+            onChange={(value) => setFormData(prev => ({ ...prev, image: value }))}
+            placeholder="/img/categorias/produto.png"
+          />
 
           <div className="form-group">
             <label>Descrição</label>
@@ -3243,7 +3510,7 @@ function SettingsPage() {
     
     switch(themeId) {
       case 'dark':
-        // Tema escuro (azul-cinza)
+        // Tema escuro (azul-cinza) - Ajustado para melhor visibilidade
         root.style.setProperty('--bg', '#0f172a');
         root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)');
         root.style.setProperty('--surface', '#1e293b');
@@ -3252,28 +3519,42 @@ function SettingsPage() {
         root.style.setProperty('--text', '#f8fafc');
         root.style.setProperty('--text-muted', '#cbd5e1');
         root.style.setProperty('--text-light', '#e2e8f0');
-        root.style.setProperty('--border', '#374151');
+        root.style.setProperty('--border', '#475569');
         root.style.setProperty('--glass', 'rgba(255, 255, 255, 0.1)');
+        root.style.setProperty('--primary', '#f8fafc');
+        root.style.setProperty('--focus', '#60a5fa');
+        root.style.setProperty('--success', '#34d399');
+        root.style.setProperty('--success-light', 'rgba(52, 211, 153, 0.1)');
+        root.style.setProperty('--warning', '#fbbf24');
+        root.style.setProperty('--warning-light', 'rgba(251, 191, 36, 0.1)');
+        root.style.setProperty('--error', '#f87171');
+        root.style.setProperty('--error-light', 'rgba(248, 113, 113, 0.1)');
+        root.style.setProperty('--info', '#60a5fa');
+        root.style.setProperty('--info-light', 'rgba(96, 165, 250, 0.1)');
         break;
         
       case 'black':
-        // Tema preto (preto real)
+        // Tema preto (preto real) - Ajustado para máximo contraste
         root.style.setProperty('--bg', '#000000');
-        root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #111111 0%, #000000 100%)');
-        root.style.setProperty('--surface', '#111111');
-        root.style.setProperty('--panel', 'linear-gradient(135deg, #222222 0%, #111111 100%)');
-        root.style.setProperty('--card-gradient', 'linear-gradient(135deg, #1a1a1a 0%, #111111 100%)');
+        root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #1a1a1a 0%, #000000 100%)');
+        root.style.setProperty('--surface', '#1a1a1a');
+        root.style.setProperty('--panel', 'linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%)');
+        root.style.setProperty('--card-gradient', 'linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%)');
         root.style.setProperty('--text', '#ffffff');
-        root.style.setProperty('--text-muted', '#cccccc');
-        root.style.setProperty('--text-light', '#e0e0e0');
-        root.style.setProperty('--border', '#333333');
+        root.style.setProperty('--text-muted', '#d1d5db');
+        root.style.setProperty('--text-light', '#e5e7eb');
+        root.style.setProperty('--border', '#404040');
         root.style.setProperty('--glass', 'rgba(255, 255, 255, 0.1)');
         root.style.setProperty('--primary', '#ffffff');
-        root.style.setProperty('--focus', '#666666');
-        root.style.setProperty('--success', '#22c55e');
+        root.style.setProperty('--focus', '#9ca3af');
+        root.style.setProperty('--success', '#10b981');
+        root.style.setProperty('--success-light', 'rgba(16, 185, 129, 0.1)');
         root.style.setProperty('--warning', '#f59e0b');
+        root.style.setProperty('--warning-light', 'rgba(245, 158, 11, 0.1)');
         root.style.setProperty('--error', '#ef4444');
+        root.style.setProperty('--error-light', 'rgba(239, 68, 68, 0.1)');
         root.style.setProperty('--info', '#3b82f6');
+        root.style.setProperty('--info-light', 'rgba(59, 130, 246, 0.1)');
         break;
         
       default: // light
@@ -3637,11 +3918,10 @@ function SettingsPage() {
               {/* Outras configurações */}
               <div className="settings-grid">
                 <div className="form-group">
-                  <label>URL do Logo</label>
-                  <input
-                    type="text"
+                  <ImageInputWithGallery 
+                    label="URL do Logo"
                     value={settings.appearance?.logoUrl || ''}
-                    onChange={(e) => updateSetting('appearance', 'logoUrl', e.target.value)}
+                    onChange={(value) => updateSetting('appearance', 'logoUrl', value)}
                     placeholder="/img/Logos/logo.png"
                   />
                 </div>
@@ -3715,11 +3995,11 @@ function SettingsPage() {
                         />
                       </div>
                       <div className="form-group">
-                        <label>URL da Imagem/Vídeo</label>
-                        <input
-                          type="text"
+                        <ImageInputWithGallery 
+                          label="URL da Imagem/Vídeo"
                           value={banner.imageUrl}
-                          onChange={(e) => updateBanner(banner.id, { imageUrl: e.target.value })}
+                          onChange={(value) => updateBanner(banner.id, { imageUrl: value })}
+                          placeholder="Selecione da galeria ou cole URL"
                         />
                       </div>
                       <div className="form-group">
@@ -3934,7 +4214,7 @@ function DashboardApp() {
     
     switch(themeId) {
       case 'dark':
-        // Tema escuro (azul-cinza)
+        // Tema escuro (azul-cinza) - Ajustado para melhor visibilidade
         root.style.setProperty('--bg', '#0f172a');
         root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)');
         root.style.setProperty('--surface', '#1e293b');
@@ -3943,21 +4223,43 @@ function DashboardApp() {
         root.style.setProperty('--text', '#f8fafc');
         root.style.setProperty('--text-muted', '#cbd5e1');
         root.style.setProperty('--text-light', '#e2e8f0');
-        root.style.setProperty('--border', '#374151');
+        root.style.setProperty('--border', '#475569');
         root.style.setProperty('--glass', 'rgba(255, 255, 255, 0.1)');
+        root.style.setProperty('--primary', '#f8fafc');
+        root.style.setProperty('--focus', '#60a5fa');
+        root.style.setProperty('--success', '#34d399');
+        root.style.setProperty('--success-light', 'rgba(52, 211, 153, 0.1)');
+        root.style.setProperty('--warning', '#fbbf24');
+        root.style.setProperty('--warning-light', 'rgba(251, 191, 36, 0.1)');
+        root.style.setProperty('--error', '#f87171');
+        root.style.setProperty('--error-light', 'rgba(248, 113, 113, 0.1)');
+        root.style.setProperty('--info', '#60a5fa');
+        root.style.setProperty('--info-light', 'rgba(96, 165, 250, 0.1)');
         break;
         
       case 'black':
-        // Tema preto (preto real)
+        // Tema preto (preto real) - Ajustado para máximo contraste
         root.style.setProperty('--bg', '#000000');
-        root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #111111 0%, #000000 100%)');
-        root.style.setProperty('--surface', '#111111');
-        root.style.setProperty('--panel', 'linear-gradient(135deg, #222222 0%, #111111 100%)');
-        root.style.setProperty('--card-gradient', 'linear-gradient(135deg, #1a1a1a 0%, #111111 100%)');
+        root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #1a1a1a 0%, #000000 100%)');
+        root.style.setProperty('--surface', '#1a1a1a');
+        root.style.setProperty('--panel', 'linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%)');
+        root.style.setProperty('--card-gradient', 'linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%)');
         root.style.setProperty('--text', '#ffffff');
-        root.style.setProperty('--text-muted', '#cccccc');
-        root.style.setProperty('--text-light', '#e0e0e0');
-        root.style.setProperty('--border', '#333333');
+        root.style.setProperty('--text-muted', '#d1d5db');
+        root.style.setProperty('--text-light', '#e5e7eb');
+        root.style.setProperty('--border', '#404040');
+        root.style.setProperty('--glass', 'rgba(255, 255, 255, 0.1)');
+        root.style.setProperty('--primary', '#ffffff');
+        root.style.setProperty('--focus', '#9ca3af');
+        root.style.setProperty('--success', '#10b981');
+        root.style.setProperty('--success-light', 'rgba(16, 185, 129, 0.1)');
+        root.style.setProperty('--warning', '#f59e0b');
+        root.style.setProperty('--warning-light', 'rgba(245, 158, 11, 0.1)');
+        root.style.setProperty('--error', '#ef4444');
+        root.style.setProperty('--error-light', 'rgba(239, 68, 68, 0.1)');
+        root.style.setProperty('--info', '#3b82f6');
+        root.style.setProperty('--info-light', 'rgba(59, 130, 246, 0.1)');
+        break;
         root.style.setProperty('--glass', 'rgba(255, 255, 255, 0.1)');
         root.style.setProperty('--primary', '#ffffff');
         root.style.setProperty('--focus', '#666666');
