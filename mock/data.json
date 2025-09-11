@@ -1,0 +1,617 @@
+{
+  "clubs": [
+    {
+      "id": "brasil",
+      "name": "Seleção Brasileira",
+      "thumbnail": "/assets/clubs/brasil-thumb.jpg",
+      "images": [
+        "/assets/clubs/brasil-1.jpg",
+        "/assets/clubs/brasil-2.jpg",
+        "/assets/clubs/brasil-3.jpg"
+      ],
+      "featured": true,
+      "order": 1,
+      "status": "active",
+      "description": "Seleção Brasileira de Futebol",
+      "createdAt": "2024-01-01T10:00:00Z",
+      "updatedAt": "2024-01-15T14:30:00Z"
+    },
+    {
+      "id": "argentina",
+      "name": "Seleção Argentina",
+      "thumbnail": "/assets/clubs/argentina-thumb.jpg",
+      "images": [
+        "/assets/clubs/argentina-1.jpg",
+        "/assets/clubs/argentina-2.jpg"
+      ],
+      "featured": true,
+      "order": 2,
+      "status": "active",
+      "description": "Seleção Argentina de Futebol",
+      "createdAt": "2024-01-02T10:00:00Z",
+      "updatedAt": "2024-01-15T14:30:00Z"
+    },
+    {
+      "id": "realmadrid",
+      "name": "Real Madrid",
+      "thumbnail": "/assets/clubs/real-thumb.jpg",
+      "images": [
+        "/assets/clubs/real-1.jpg",
+        "/assets/clubs/real-2.jpg",
+        "/assets/clubs/real-3.jpg",
+        "/assets/clubs/real-4.jpg"
+      ],
+      "featured": false,
+      "order": 3,
+      "status": "active",
+      "description": "Real Madrid Club de Fútbol",
+      "createdAt": "2024-01-03T10:00:00Z",
+      "updatedAt": "2024-01-15T14:30:00Z"
+    },
+    {
+      "id": "barcelona",
+      "name": "FC Barcelona",
+      "thumbnail": "/assets/clubs/barca-thumb.jpg",
+      "images": [
+        "/assets/clubs/barca-1.jpg",
+        "/assets/clubs/barca-2.jpg"
+      ],
+      "featured": true,
+      "order": 4,
+      "status": "active",
+      "description": "Futbol Club Barcelona",
+      "createdAt": "2024-01-04T10:00:00Z",
+      "updatedAt": "2024-01-15T14:30:00Z"
+    },
+    {
+      "id": "psg",
+      "name": "Paris Saint-Germain",
+      "thumbnail": "/assets/clubs/psg-thumb.jpg",
+      "images": [
+        "/assets/clubs/psg-1.jpg"
+      ],
+      "featured": false,
+      "order": 5,
+      "status": "active",
+      "description": "Paris Saint-Germain Football Club",
+      "createdAt": "2024-01-05T10:00:00Z",
+      "updatedAt": "2024-01-15T14:30:00Z"
+    },
+    {
+      "id": "flamengo",
+      "name": "Flamengo",
+      "thumbnail": "/assets/clubs/flamengo-thumb.jpg",
+      "images": [
+        "/assets/clubs/flamengo-1.jpg",
+        "/assets/clubs/flamengo-2.jpg"
+      ],
+      "featured": false,
+      "order": 6,
+      "status": "inactive",
+      "description": "Clube de Regatas do Flamengo",
+      "createdAt": "2024-01-06T10:00:00Z",
+      "updatedAt": "2024-01-15T14:30:00Z"
+    }
+  ],
+  
+  "products": [
+    {
+      "id": "p1",
+      "title": "Camisa Brasil Retrô 1994",
+      "description": "Camisa oficial retrô da Seleção Brasileira, usada na Copa do Mundo de 1994. Tecido premium com tecnologia dry-fit.",
+      "price": 129.90,
+      "oldPrice": 159.90,
+      "clubId": "brasil",
+      "category": "retro",
+      "tags": ["brasil", "retro", "1994", "copa"],
+      "images": [
+        "/assets/products/brasil-1994-1.jpg",
+        "/assets/products/brasil-1994-2.jpg",
+        "/assets/products/brasil-1994-3.jpg"
+      ],
+      "sku": "BRA-94-01",
+      "stock": 12,
+      "sizes": ["P", "M", "G", "GG"],
+      "status": "published",
+      "featured": true,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "updatedAt": "2024-01-15T15:45:00Z"
+    },
+    {
+      "id": "p2",
+      "title": "Camisa Argentina 2022",
+      "description": "Camisa oficial da Seleção Argentina, bicampeã mundial. Edição especial com escudo dourado.",
+      "price": 149.90,
+      "oldPrice": null,
+      "clubId": "argentina",
+      "category": "current",
+      "tags": ["argentina", "2022", "copa", "mundial"],
+      "images": [
+        "/assets/products/argentina-2022-1.jpg",
+        "/assets/products/argentina-2022-2.jpg"
+      ],
+      "sku": "ARG-22-01",
+      "stock": 8,
+      "sizes": ["P", "M", "G", "GG"],
+      "status": "published",
+      "featured": true,
+      "createdAt": "2024-01-14T15:20:00Z",
+      "updatedAt": "2024-01-15T12:30:00Z"
+    },
+    {
+      "id": "p3",
+      "title": "Camisa Real Madrid Home 2024",
+      "description": "Camisa titular do Real Madrid para a temporada 2024. Design clássico com detalhes modernos.",
+      "price": 199.90,
+      "oldPrice": 229.90,
+      "clubId": "realmadrid",
+      "category": "current",
+      "tags": ["real madrid", "2024", "champions"],
+      "images": [
+        "/assets/products/real-2024-1.jpg",
+        "/assets/products/real-2024-2.jpg",
+        "/assets/products/real-2024-3.jpg"
+      ],
+      "sku": "RM-24-01",
+      "stock": 15,
+      "sizes": ["P", "M", "G", "GG", "XGG"],
+      "status": "published",
+      "featured": false,
+      "createdAt": "2024-01-13T09:15:00Z",
+      "updatedAt": "2024-01-15T16:20:00Z"
+    },
+    {
+      "id": "p4",
+      "title": "Camisa Barcelona Away 2024",
+      "description": "Camisa alternativa do FC Barcelona. Design inovador inspirado na cultura catalã.",
+      "price": 189.90,
+      "oldPrice": null,
+      "clubId": "barcelona",
+      "category": "current",
+      "tags": ["barcelona", "2024", "away"],
+      "images": [
+        "/assets/products/barca-away-2024-1.jpg"
+      ],
+      "sku": "FCB-24-02",
+      "stock": 6,
+      "sizes": ["M", "G", "GG"],
+      "status": "published",
+      "featured": false,
+      "createdAt": "2024-01-12T14:45:00Z",
+      "updatedAt": "2024-01-15T11:10:00Z"
+    },
+    {
+      "id": "p5",
+      "title": "Camisa PSG Home 2024",
+      "description": "Camisa oficial do Paris Saint-Germain. Qualidade premium com logo bordado.",
+      "price": 179.90,
+      "oldPrice": null,
+      "clubId": "psg",
+      "category": "current",
+      "tags": ["psg", "2024", "paris"],
+      "images": [
+        "/assets/products/psg-2024-1.jpg",
+        "/assets/products/psg-2024-2.jpg"
+      ],
+      "sku": "PSG-24-01",
+      "stock": 0,
+      "sizes": ["P", "M", "G"],
+      "status": "draft",
+      "featured": false,
+      "createdAt": "2024-01-11T16:30:00Z",
+      "updatedAt": "2024-01-15T09:45:00Z"
+    }
+  ],
+  
+  "orders": [
+    {
+      "id": "ORD-001",
+      "orderNumber": "NH001594",
+      "customer": {
+        "id": "cust-001",
+        "name": "João Silva",
+        "email": "joao@email.com",
+        "phone": "(11) 99999-9999",
+        "document": "123.456.789-00"
+      },
+      "items": [
+        {
+          "productId": "p1",
+          "productTitle": "Camisa Brasil Retrô 1994",
+          "quantity": 2,
+          "size": "M",
+          "unitPrice": 129.90,
+          "totalPrice": 259.80
+        }
+      ],
+      "shipping": {
+        "method": "Standard",
+        "cost": 15.90,
+        "address": {
+          "street": "Rua das Flores, 123",
+          "neighborhood": "Centro",
+          "city": "São Paulo",
+          "state": "SP",
+          "zipCode": "01234-567"
+        }
+      },
+      "payment": {
+        "method": "credit_card",
+        "status": "approved",
+        "installments": 2,
+        "transactionId": "txn_abc123"
+      },
+      "subtotal": 259.80,
+      "shippingCost": 15.90,
+      "total": 275.70,
+      "status": "processing",
+      "createdAt": "2024-01-15T14:22:00Z",
+      "updatedAt": "2024-01-15T14:25:00Z",
+      "timeline": [
+        {
+          "status": "created",
+          "timestamp": "2024-01-15T14:22:00Z",
+          "note": "Pedido criado com sucesso"
+        },
+        {
+          "status": "payment_approved",
+          "timestamp": "2024-01-15T14:23:00Z",
+          "note": "Pagamento aprovado"
+        },
+        {
+          "status": "processing",
+          "timestamp": "2024-01-15T14:25:00Z",
+          "note": "Pedido em separação"
+        }
+      ]
+    },
+    {
+      "id": "ORD-002",
+      "orderNumber": "NH001595",
+      "customer": {
+        "id": "cust-002",
+        "name": "Maria Santos",
+        "email": "maria@email.com",
+        "phone": "(21) 88888-8888",
+        "document": "987.654.321-00"
+      },
+      "items": [
+        {
+          "productId": "p2",
+          "productTitle": "Camisa Argentina 2022",
+          "quantity": 1,
+          "size": "G",
+          "unitPrice": 149.90,
+          "totalPrice": 149.90
+        }
+      ],
+      "shipping": {
+        "method": "Express",
+        "cost": 25.90,
+        "address": {
+          "street": "Av. Copacabana, 456",
+          "neighborhood": "Copacabana",
+          "city": "Rio de Janeiro",
+          "state": "RJ",
+          "zipCode": "22070-010"
+        }
+      },
+      "payment": {
+        "method": "pix",
+        "status": "approved",
+        "installments": 1,
+        "transactionId": "pix_def456"
+      },
+      "subtotal": 149.90,
+      "shippingCost": 25.90,
+      "total": 175.80,
+      "status": "shipped",
+      "createdAt": "2024-01-15T12:10:00Z",
+      "updatedAt": "2024-01-15T16:45:00Z",
+      "timeline": [
+        {
+          "status": "created",
+          "timestamp": "2024-01-15T12:10:00Z",
+          "note": "Pedido criado"
+        },
+        {
+          "status": "payment_approved",
+          "timestamp": "2024-01-15T12:11:00Z",
+          "note": "Pagamento via PIX aprovado"
+        },
+        {
+          "status": "processing",
+          "timestamp": "2024-01-15T13:30:00Z",
+          "note": "Pedido separado"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2024-01-15T16:45:00Z",
+          "note": "Enviado via Correios - Código: BR123456789"
+        }
+      ]
+    },
+    {
+      "id": "ORD-003",
+      "orderNumber": "NH001596",
+      "customer": {
+        "id": "cust-003",
+        "name": "Pedro Costa",
+        "email": "pedro@email.com",
+        "phone": "(31) 77777-7777",
+        "document": "456.789.123-00"
+      },
+      "items": [
+        {
+          "productId": "p3",
+          "productTitle": "Camisa Real Madrid Home 2024",
+          "quantity": 1,
+          "size": "GG",
+          "unitPrice": 199.90,
+          "totalPrice": 199.90
+        }
+      ],
+      "shipping": {
+        "method": "Standard",
+        "cost": 15.90,
+        "address": {
+          "street": "Rua Minas Gerais, 789",
+          "neighborhood": "Savassi",
+          "city": "Belo Horizonte",
+          "state": "MG",
+          "zipCode": "30112-000"
+        }
+      },
+      "payment": {
+        "method": "credit_card",
+        "status": "approved",
+        "installments": 3,
+        "transactionId": "txn_ghi789"
+      },
+      "subtotal": 199.90,
+      "shippingCost": 15.90,
+      "total": 215.80,
+      "status": "delivered",
+      "createdAt": "2024-01-14T16:45:00Z",
+      "updatedAt": "2024-01-16T10:20:00Z",
+      "timeline": [
+        {
+          "status": "created",
+          "timestamp": "2024-01-14T16:45:00Z",
+          "note": "Pedido criado"
+        },
+        {
+          "status": "payment_approved",
+          "timestamp": "2024-01-14T16:46:00Z",
+          "note": "Pagamento em 3x aprovado"
+        },
+        {
+          "status": "processing",
+          "timestamp": "2024-01-15T09:00:00Z",
+          "note": "Pedido em separação"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2024-01-15T14:30:00Z",
+          "note": "Enviado via Transportadora"
+        },
+        {
+          "status": "delivered",
+          "timestamp": "2024-01-16T10:20:00Z",
+          "note": "Entregue - Recebido por: Pedro Costa"
+        }
+      ]
+    }
+  ],
+  
+  "media": [
+    {
+      "id": "m1",
+      "url": "/assets/uploads/brasil-1994-hero.jpg",
+      "alt": "Camisa Brasil 1994 Hero Image",
+      "title": "Banner Principal - Brasil Retrô",
+      "description": "Imagem principal para campanha Brasil Retrô 1994",
+      "tags": ["banner", "brasil", "retro", "hero", "1994"],
+      "width": 1920,
+      "height": 1080,
+      "fileSize": 580000,
+      "mimeType": "image/jpeg",
+      "folder": "banners",
+      "uploadedBy": "admin",
+      "uploadedAt": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "m2",
+      "url": "/assets/uploads/argentina-banner.jpg",
+      "alt": "Banner Argentina Campeã Mundial",
+      "title": "Banner Argentina Mundial 2022",
+      "description": "Banner promocional Argentina Bicampeã Mundial",
+      "tags": ["banner", "argentina", "mundial", "2022"],
+      "width": 1920,
+      "height": 1080,
+      "fileSize": 620000,
+      "mimeType": "image/jpeg",
+      "folder": "banners",
+      "uploadedBy": "admin",
+      "uploadedAt": "2024-01-14T15:20:00Z"
+    },
+    {
+      "id": "m3",
+      "url": "/assets/uploads/brasil-thumb.jpg",
+      "alt": "Logo Seleção Brasileira",
+      "title": "Logo Brasil",
+      "description": "Logo oficial da Seleção Brasileira",
+      "tags": ["logo", "brasil", "selecao"],
+      "width": 300,
+      "height": 300,
+      "fileSize": 45000,
+      "mimeType": "image/jpeg",
+      "folder": "logos",
+      "uploadedBy": "admin",
+      "uploadedAt": "2024-01-10T10:00:00Z"
+    },
+    {
+      "id": "m4",
+      "url": "/assets/uploads/real-madrid-logo.png",
+      "alt": "Logo Real Madrid",
+      "title": "Logo Real Madrid",
+      "description": "Logo oficial do Real Madrid",
+      "tags": ["logo", "real madrid", "club"],
+      "width": 400,
+      "height": 400,
+      "fileSize": 78000,
+      "mimeType": "image/png",
+      "folder": "logos",
+      "uploadedBy": "admin",
+      "uploadedAt": "2024-01-08T14:30:00Z"
+    },
+    {
+      "id": "m5",
+      "url": "/assets/uploads/product-brasil-1994.jpg",
+      "alt": "Camisa Brasil 1994 Produto",
+      "title": "Produto - Camisa Brasil 1994",
+      "description": "Foto do produto Camisa Brasil Retrô 1994",
+      "tags": ["produto", "brasil", "1994", "camisa"],
+      "width": 800,
+      "height": 800,
+      "fileSize": 320000,
+      "mimeType": "image/jpeg",
+      "folder": "products",
+      "uploadedBy": "admin",
+      "uploadedAt": "2024-01-15T11:45:00Z"
+    }
+  ],
+  
+  "users": [
+    {
+      "id": "user-001",
+      "name": "João Silva",
+      "email": "joao@email.com",
+      "phone": "(11) 99999-9999",
+      "document": "123.456.789-00",
+      "role": "customer",
+      "status": "active",
+      "address": {
+        "street": "Rua das Flores, 123",
+        "neighborhood": "Centro",
+        "city": "São Paulo",
+        "state": "SP",
+        "zipCode": "01234-567"
+      },
+      "stats": {
+        "totalOrders": 3,
+        "totalSpent": 847.50,
+        "lastOrderDate": "2024-01-15T14:22:00Z"
+      },
+      "createdAt": "2023-12-10T10:30:00Z",
+      "updatedAt": "2024-01-15T14:22:00Z"
+    },
+    {
+      "id": "user-002",
+      "name": "Maria Santos",
+      "email": "maria@email.com",
+      "phone": "(21) 88888-8888",
+      "document": "987.654.321-00",
+      "role": "customer",
+      "status": "active",
+      "address": {
+        "street": "Av. Copacabana, 456",
+        "neighborhood": "Copacabana",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "zipCode": "22070-010"
+      },
+      "stats": {
+        "totalOrders": 1,
+        "totalSpent": 175.80,
+        "lastOrderDate": "2024-01-15T12:10:00Z"
+      },
+      "createdAt": "2024-01-05T16:20:00Z",
+      "updatedAt": "2024-01-15T12:10:00Z"
+    },
+    {
+      "id": "admin-001",
+      "name": "Admin NewHope",
+      "email": "admin@newhope.com",
+      "phone": "(11) 1234-5678",
+      "role": "admin",
+      "status": "active",
+      "permissions": [
+        "dashboard.view",
+        "products.manage",
+        "orders.manage",
+        "users.manage",
+        "media.manage",
+        "settings.manage"
+      ],
+      "lastLogin": "2024-01-16T08:30:00Z",
+      "createdAt": "2023-01-01T00:00:00Z",
+      "updatedAt": "2024-01-16T08:30:00Z"
+    }
+  ],
+  
+  "analytics": {
+    "salesData": {
+      "daily": [
+        { "date": "2024-01-10", "sales": 1250.90, "orders": 8 },
+        { "date": "2024-01-11", "sales": 890.50, "orders": 5 },
+        { "date": "2024-01-12", "sales": 1580.30, "orders": 12 },
+        { "date": "2024-01-13", "sales": 2100.80, "orders": 15 },
+        { "date": "2024-01-14", "sales": 1750.60, "orders": 11 },
+        { "date": "2024-01-15", "sales": 2890.40, "orders": 18 },
+        { "date": "2024-01-16", "sales": 1960.70, "orders": 14 }
+      ],
+      "monthly": [
+        { "month": "2023-12", "sales": 45890.50, "orders": 312 },
+        { "month": "2024-01", "sales": 12450.80, "orders": 156 }
+      ]
+    },
+    "topProducts": [
+      { "productId": "p1", "title": "Camisa Brasil Retrô 1994", "sales": 45, "revenue": 5845.50 },
+      { "productId": "p2", "title": "Camisa Argentina 2022", "sales": 32, "revenue": 4796.80 },
+      { "productId": "p3", "title": "Camisa Real Madrid Home 2024", "sales": 28, "revenue": 5597.20 }
+    ],
+    "topClubs": [
+      { "clubId": "brasil", "name": "Seleção Brasileira", "products": 12, "sales": 156 },
+      { "clubId": "argentina", "name": "Seleção Argentina", "products": 8, "sales": 89 },
+      { "clubId": "realmadrid", "name": "Real Madrid", "products": 15, "sales": 134 }
+    ]
+  },
+  
+  "settings": {
+    "site": {
+      "name": "NewHope",
+      "description": "Loja oficial de camisas de futebol",
+      "logo": "/assets/logo.png",
+      "favicon": "/assets/favicon.ico",
+      "primaryColor": "#10b981",
+      "secondaryColor": "#1a1a1a"
+    },
+    "banner": {
+      "id": "banner-main",
+      "title": "CHRONIC",
+      "subtitle": "Coleção exclusiva Chronic.",
+      "image": "/assets/banners/chronic-hero.jpg",
+      "ctaText": "Ver Coleção",
+      "ctaLink": "/colecao/chronic",
+      "active": true,
+      "order": 1
+    },
+    "carousel": {
+      "autoplay": true,
+      "interval": 4000,
+      "showDots": false,
+      "infiniteLoop": true
+    },
+    "shipping": {
+      "freeShippingThreshold": 199.90,
+      "standardCost": 15.90,
+      "expressCost": 25.90
+    },
+    "payment": {
+      "methods": ["credit_card", "pix", "boleto"],
+      "maxInstallments": 3,
+      "minInstallmentValue": 50.00
+    }
+  }
+}
