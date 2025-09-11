@@ -3239,6 +3239,8 @@ function SettingsPage() {
     // Aplica o novo tema
     document.body.classList.add(`theme-${themeId}`);
     
+    console.log('🎨 Aplicando tema via Settings:', themeId);
+    
     switch(themeId) {
       case 'dark':
         // Tema escuro (azul-cinza)
@@ -3297,7 +3299,7 @@ function SettingsPage() {
     
     // Salvar tema no localStorage
     localStorage.setItem('dashboardTheme', themeId);
-    console.log('Tema aplicado:', themeId);
+    console.log('💾 Tema salvo no localStorage:', themeId);
   };
 
   const toggleCompactMode = (isCompact) => {
@@ -3900,6 +3902,92 @@ function DashboardApp() {
   const [currentPage, setCurrentPage] = useState('overview');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [toasts, setToasts] = useState([]);
+
+  // Carregar tema automaticamente na inicialização
+  useEffect(() => {
+    const loadSavedTheme = () => {
+      const savedTheme = localStorage.getItem('dashboardTheme');
+      console.log('🎨 Carregando tema salvo:', savedTheme);
+      
+      if (savedTheme) {
+        applyThemeDirectly(savedTheme);
+      } else {
+        // Se não há tema salvo, usa o tema claro por padrão
+        applyThemeDirectly('light');
+      }
+    };
+
+    loadSavedTheme();
+  }, []);
+
+  // Função para aplicar tema diretamente (sem depender de state)
+  const applyThemeDirectly = (themeId) => {
+    const root = document.documentElement;
+    
+    // Remove classes de tema anteriores
+    document.body.classList.remove('theme-light', 'theme-dark', 'theme-black');
+    
+    // Aplica o novo tema
+    document.body.classList.add(`theme-${themeId}`);
+    
+    console.log('🎨 Aplicando tema:', themeId);
+    
+    switch(themeId) {
+      case 'dark':
+        // Tema escuro (azul-cinza)
+        root.style.setProperty('--bg', '#0f172a');
+        root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)');
+        root.style.setProperty('--surface', '#1e293b');
+        root.style.setProperty('--panel', 'linear-gradient(135deg, #334155 0%, #1e293b 100%)');
+        root.style.setProperty('--card-gradient', 'linear-gradient(135deg, #334155 0%, #1e293b 100%)');
+        root.style.setProperty('--text', '#f8fafc');
+        root.style.setProperty('--text-muted', '#cbd5e1');
+        root.style.setProperty('--text-light', '#e2e8f0');
+        root.style.setProperty('--border', '#374151');
+        root.style.setProperty('--glass', 'rgba(255, 255, 255, 0.1)');
+        break;
+        
+      case 'black':
+        // Tema preto (preto real)
+        root.style.setProperty('--bg', '#000000');
+        root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #111111 0%, #000000 100%)');
+        root.style.setProperty('--surface', '#111111');
+        root.style.setProperty('--panel', 'linear-gradient(135deg, #222222 0%, #111111 100%)');
+        root.style.setProperty('--card-gradient', 'linear-gradient(135deg, #1a1a1a 0%, #111111 100%)');
+        root.style.setProperty('--text', '#ffffff');
+        root.style.setProperty('--text-muted', '#cccccc');
+        root.style.setProperty('--text-light', '#e0e0e0');
+        root.style.setProperty('--border', '#333333');
+        root.style.setProperty('--glass', 'rgba(255, 255, 255, 0.1)');
+        root.style.setProperty('--primary', '#ffffff');
+        root.style.setProperty('--focus', '#666666');
+        root.style.setProperty('--success', '#22c55e');
+        root.style.setProperty('--warning', '#f59e0b');
+        root.style.setProperty('--error', '#ef4444');
+        root.style.setProperty('--info', '#3b82f6');
+        break;
+        
+      default: // light
+        // Tema claro (padrão)
+        root.style.setProperty('--bg', '#ffffff');
+        root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)');
+        root.style.setProperty('--surface', '#ffffff');
+        root.style.setProperty('--panel', 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)');
+        root.style.setProperty('--card-gradient', 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)');
+        root.style.setProperty('--text', '#1e293b');
+        root.style.setProperty('--text-muted', '#64748b');
+        root.style.setProperty('--text-light', '#94a3b8');
+        root.style.setProperty('--border', '#e2e8f0');
+        root.style.setProperty('--glass', 'rgba(0, 0, 0, 0.05)');
+        root.style.setProperty('--primary', '#1e293b');
+        root.style.setProperty('--focus', '#3b82f6');
+        root.style.setProperty('--success', '#10b981');
+        root.style.setProperty('--warning', '#f59e0b');
+        root.style.setProperty('--error', '#ef4444');
+        root.style.setProperty('--info', '#3b82f6');
+        break;
+    }
+  };
 
   const addToast = (message, type = 'info') => {
     const id = Date.now();
